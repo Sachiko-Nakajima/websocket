@@ -1,11 +1,12 @@
 var express = require('express');
 var app = express();
+//var ws = require('./ws');
 var http = require('http').createServer(app);
 var io = require('socket.io')(http); 
 app.use(express.static('public'));
 
-http.listen(3000,() => {
-    console.log('listening on *:3000');
+http.listen(8000,() => {
+    console.log('listening on *:8000');
 });
 
 // app.get('/', (req,res) => {
@@ -20,10 +21,6 @@ function newConnection(socket){
 //    socket.on('person', personMsg);
     socket.on('mouse', mouseMsg);
 
-    function personMsg(data) {
-        socket.broadcast.emit('person', data);
-        console.log(data);
-    }
     function mouseMsg(data){
         socket.broadcast.emit('mouse', data);
         console.log(data);
