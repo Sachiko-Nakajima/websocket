@@ -34,15 +34,18 @@ function setup() {
   phone = loadImage("phone.png");
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://websocket-p5-ml5.herokuapp.com/');
- socket.on('mouse', newDrawing);
-
+ socket.on('mouse', newDrawing1);
+ socket.on('tel', newDrawing2);
 }
 
-function newDrawing(data){
+function newDrawing1(data){
   noStroke();
   fill(200,0,100);
   image(kitty, data.x, data.y, data.w, data.h/2);
-  meow.play();
+}
+
+function newDrawing2(data){
+  image(phone, data.x, data.y, data.w, data.h/2);
 }
 
 
@@ -93,13 +96,13 @@ function draw() {
         personstate = 1;
         personlocalstate = 1;
         console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
-        var data = {
+        var data1 = {
          x: detection.x,
          y: detection.y,
          w: detection.w,
          h: detection.h
         }
-        socket.emit('mouse', data); 
+        socket.emit('mouse', data1); 
       
         if(persontime1%5==0){
         image(kitty, detection.x, detection.y, detection.width, detection.height/2);        
@@ -116,6 +119,15 @@ function draw() {
         }
         phonestate = 1;
         phonelocalstate = 1;
+        console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
+        var data2 = {
+         x: detection.x,
+         y: detection.y,
+         w: detection.w,
+         h: detection.h
+        }
+        socket.emit('tel', data2); 
+
         if(phonetime1%5==0){
         image(phone, detection.x, detection.y, detection.width, detection.height/2);    
       rect(detection.x, detection.y, detection.width, detection.height/2);}
