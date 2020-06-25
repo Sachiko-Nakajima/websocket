@@ -4,6 +4,7 @@
   "description": "sockets example live on youtube ",
   "main": "sketch.js",
   "scripts": {
+    "start": "node socket.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
