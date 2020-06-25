@@ -41,7 +41,8 @@ function setup() {
 function newDrawing(data){
   noStroke();
   fill(200,0,100);
-  ellipse(data.x, data.y, 10,10);
+  image(kitty, data.x, data.y, data.w, data.h/2);
+  meow.play();
 }
 
 
@@ -91,10 +92,12 @@ function draw() {
         }
         personstate = 1;
         personlocalstate = 1;
-        console.log('Sending:' + detection.x + ',' + detection.y);
+        console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
         var data = {
          x: detection.x,
-         y: detection.y
+         y: detection.y,
+         w: detection.w,
+         h: detection.h
         }
         socket.emit('mouse', data); 
       
