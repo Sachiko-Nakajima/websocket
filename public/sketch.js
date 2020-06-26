@@ -40,7 +40,7 @@ function setup() {
   kitty = loadImage("kitty.jpeg");
   phone = loadImage("phone.png");
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
-  socket = io.connect('https://websocket-p5-ml5.herokuapp.com/');
+  socket = io.connect('https://cocreativetest.herokuapp.com/');
   socket.on('mouse', newDrawing);
 
 }
