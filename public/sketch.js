@@ -48,7 +48,7 @@ function setup() {
 function newDrawing(data){
   noStroke();
   fill(200,0,100);
-  image(kitty, data.x, data.y, data.w, data.h);
+  image(kitty, 800 - data.x*4, data.y*4, data.w/4, data.h/4);
 }
 
 
