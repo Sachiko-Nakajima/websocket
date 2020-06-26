@@ -49,8 +49,6 @@ function newDrawing(data){
   noStroke();
   fill(200,0,100);
   image(kitty, data.x, data.y, data.w, data.h);
-  if(!meow.isPlaying()){
-  meow.play();}
 }
 
 
