@@ -1,4 +1,3 @@
-let video;
 let detector;
 let detections;
 let meow, kitty;
@@ -14,6 +13,12 @@ let phonetime2 = 0;
 let time = 0;
 let objects = [];
 let socket;
+let button; 
+let font1_shadow;
+let camera_1;
+var camButton;
+var camState = false;
+let cam_y =-220;
 
 function preload() {
   //load meow sound:
@@ -22,30 +27,30 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(360, 540);
 
-  video = createCapture(VIDEO);
-  video.size(width, height/2);
-  video.hide();  // hide the initial webcamera view 
+  createCanvas(800,800);
+  camera_1 = createCapture(VIDEO);
+  camera_1.size(200,100);
+
+  camera_1.hide()
+  camButton = document.getElementById("camera1");
 
   detector = ml5.objectDetector('yolo', modelReady)  //activate the ml5 Object Detection machine learning model
   
   kitty = loadImage("kitty.jpeg");
   phone = loadImage("phone.png");
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
- socket = io.connect('https://websocket-p5-ml5.herokuapp.com/');
- socket.on('mouse', newDrawing1);
- socket.on('tel', newDrawing2);
+  socket = io.connect('https://websocket-p5-ml5.herokuapp.com/');
+  socket.on('mouse', newDrawing);
+
 }
 
-function newDrawing1(data){
+function newDrawing(data){
   noStroke();
   fill(200,0,100);
-  image(kitty, data.x, data.y, data.w, data.h/2);
-}
-
-function newDrawing2(data){
-  image(phone, data.x, data.y, data.w, data.h/2);
+  image(kitty, data.x, data.y, data.w, data.h);
+  if(!meow.isPlaying()){
+  meow.play();}
 }
 
 
@@ -55,7 +60,7 @@ function modelReady() {
 }
 
 function detect() {
-  detector.detect(video, gotResults); 
+  detector.detect(camera_1, gotResults); 
 }
 
 function gotResults(err, results) {
@@ -69,84 +74,83 @@ function gotResults(err, results) {
   detect();    
 
 }
+  
+  
+function showCam(){
+camState=!camState;
+}
+
 
 function draw() {
-  if(time%10==0){
-  background(220);
-  }
-  time++;
-  image(video, 0, height/2, width, height/2); //showing the resulting video of objects that got detected
+//  if(time%10==0){
+  background(240,210,210);
+//  }
+  noStroke();
+  fill(255)
+  rect(0,0,800,160);
+  push();
+  translate(800, 0);
+  //then scale it by -1 in the x-axis
+  //to flip the image
+  scale(-1, 1);
 
+  cam = image(camera_1,width/2-100,cam_y);
+  camButton.onclick = showCam; 
+  
+  if (camState){
+    cam_y = 5;}
+  else{
+      cam_y = -220;
+   }
+  pop();
+  
+  time++;
+  
   if (detections) {
     detections.forEach(detection => {
       fill(0);
-      strokeWeight(2);
-      text(detection.label, detection.x + 4, detection.y + 10 + height/2)
-
+      stroke(0);
+      strokeWeight(1);
+      textSize(18);
+      text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
+      
       noFill();
       strokeWeight(3);
       stroke(0, 255, 0);
       if (detection.label == 'person') {
-        if(personstate ==0&& personlocalstate ==0&& !meow.isLooping()&& !meow.isLooping()){
-          meow.play();
-          meow.loop();
         personstate = 1;
-        personlocalstate = 1;
-        }
-        personstate = 1;
-        personlocalstate = 1;
+        personlocalstate += 1;
         console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
-        var data1 = {
+        var data = {
          x: detection.x,
          y: detection.y,
-         w: detection.w,
-         h: detection.h
+         w: detection.width,
+         h: detection.height
         }
-        socket.emit('mouse', data1); 
+        socket.emit('mouse', data); 
       
-        if(persontime1%5==0){
-        image(kitty, detection.x, detection.y, detection.width, detection.height/2);        
-      rect(detection.x, detection.y, detection.width, detection.height/2);}
+        image(kitty, 800-detection.x*4, detection.y*4, detection.width/4, detection.height/4);    
+        
+      }
         persontime1++;
         persontime2 = 0;
-        meow.rate(1-(detection.x-width/2)/1000);
-      } 
+//        meow.rate(1-(detection.x-width/2)/1000);
+//      } 
           if (detection.label === 'cell phone') {
         if(phonestate ==0 && phonelocalstate ==0&& !ringtone.isPlaying()){
           ringtone.play();
           ringtone.loop();
-//          ringtone.rate(1-detection.y/1000);
         }
         phonestate = 1;
         phonelocalstate = 1;
-        console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
-        var data2 = {
-         x: detection.x,
-         y: detection.y,
-         w: detection.w,
-         h: detection.h
-        }
-        socket.emit('tel', data2); 
-
-        if(phonetime1%5==0){
-        image(phone, detection.x, detection.y, detection.width, detection.height/2);    
-      rect(detection.x, detection.y, detection.width, detection.height/2);}
-            persontime1++;
+        image(phone, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+            phonetime1++;
             phonetime2 = 0;
       }     
     
     })
   }
-    console.log(personlocalstate + "person");
 
-  if(personlocalstate == 0){
-          persontime2++;
-        if(persontime2 > 3){
-        personstate = 0;
-        meow.stop();
-      }
-          persontime1=0;
-    }
     if(phonelocalstate == 0){
           phonetime2++;
         if(phonetime2 > 3){
@@ -157,13 +161,6 @@ function draw() {
     }
   personlocalstate = 0;
   phonelocalstate = 0;
-  if(meow.isPlaying()){
-    console.log("meow is on");
-    console.log(personstate);
-    if(personstate==0){
-      meow.stop();
-    }
-  }
 }
 
   	class ObjectDetected {
