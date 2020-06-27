@@ -56,16 +56,17 @@ function setup() {
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
+  phonesound.setVolume(0);  
+  phonesound.loop();
+  bearsound.loop();
+  cupsound.setVolume(0);
+  cupsound.loop();
+  testsound.play();
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
  socket.on('detected', newDrawing);
- phonesound.setVolume(0);  
- phonesound.loop();
- bearsound.loop();
- cupsound.setVolume(0);
- cupsound.loop();
- testsound.play();
+
 }
 
 function newDrawing(data){
