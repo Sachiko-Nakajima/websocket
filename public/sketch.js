@@ -10,12 +10,16 @@ let phonelocalstate = 0;
 let phonestate = 0;
 let bearlocalstate = 0;
 let bearstate = 0;
+let cuplocalstate = 0;
+let cupstate = 0;
 let persontime1 = 0;
-let phonetime1 = 0;
-let beartime1 = 0;
 let persontime2 = 0;
+let phonetime1 = 0;
 let phonetime2 = 0;
+let beartime1 = 0;
 let beartime2 = 0;
+let cuptime1 = 0;
+let cuptime2 = 0;
 let time = 0;
 let objects = [];
 let socket;
@@ -73,7 +77,7 @@ function newDrawing(data){
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
       bearsound.amp(0.3);}
-      
+
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
       cupsound.amp(0.3);}
