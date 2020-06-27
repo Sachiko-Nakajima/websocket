@@ -164,7 +164,7 @@ function draw() {
       }
       if (detection.label === 'cell phone') {
         if(phonestate ==0 && phonelocalstate ==0){
-          phonesound.amp(0.3);
+          phonesound.volume(0.3);
         }
         phonestate = 1;
         phonelocalstate = 1;
