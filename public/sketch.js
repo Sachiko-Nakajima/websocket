@@ -1,15 +1,21 @@
 let detector;
 let detections;
-let meow, kitty;
-let ringtone, phone;
+let kitty;
+let phonesound, phone;
+let bearsound, bear;
+let cupsound, cup;
 let personlocalstate = 0;
 let personstate = 0;
 let phonelocalstate = 0;
 let phonestate = 0;
+let bearlocalstate = 0;
+let bearstate = 0;
 let persontime1 = 0;
 let phonetime1 = 0;
+let beartime1 = 0;
 let persontime2 = 0;
 let phonetime2 = 0;
+let beartime2 = 0;
 let time = 0;
 let objects = [];
 let socket;
@@ -22,8 +28,10 @@ let cam_y =-220;
 
 function preload() {
   //load meow sound:
-  meow = loadSound("meow.wav");
-  ringtone = loadSound("ringtone.wav");
+  personsound = loadSound("audios/bass.wav");
+  phonesound = loadSound("audios/piano.wav");
+  bearsound = loadSound("audios/guitar.wav");
+  cupsound = loadSound("audios/drums.wav");
 }
 
 function setup() {
@@ -37,20 +45,30 @@ function setup() {
 
   detector = ml5.objectDetector('yolo', modelReady)  //activate the ml5 Object Detection machine learning model
   
-  kitty = loadImage("kitty.jpeg");
-  phone = loadImage("phone.png");
+  kitty = loadImage("images/kitty.jpeg");
+  phone = loadImage("images/phone.png");
+  bear = loadImage("images/bear.jpeg");
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
-  socket = io.connect('https://cocreativetest.herokuapp.com/');
-  socket.on('mouse', newDrawing);
-
+ socket = io.connect('https://websocket-p5-ml5.herokuapp.com/');
+ socket.on('detected', newDrawing);
 }
 
 function newDrawing(data){
   noStroke();
   fill(200,0,100);
-  image(kitty, 800 - data.x*4, data.y*4, data.w/4, data.h/4);
+  if(data.label == 'person'){
+    image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
+  if(data.label == 'cell phone'){
+    image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+    if(!phonesound.isPlaying()){
+      phonesound.play();}
+    }
+  if(data.label == 'teddy bear'){
+    image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+    if(!bearsound.isPlaying()){
+      bearsound.play();}
+    }
 }
-
 
 function modelReady() {
   console.log('model loaded')  
@@ -111,21 +129,22 @@ function draw() {
       strokeWeight(1);
       textSize(18);
       text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
-      
+      console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
+      var data = {
+      label: detection.label, 
+       x: detection.x,
+       y: detection.y,
+       w: detection.width,
+       h: detection.height
+      }
+      socket.emit('detected', data);       
       noFill();
       strokeWeight(3);
       stroke(0, 255, 0);
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
-        console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
-        var data = {
-         x: detection.x,
-         y: detection.y,
-         w: detection.width,
-         h: detection.height
-        }
-        socket.emit('mouse', data); 
+
       
         image(kitty, 800-detection.x*4, detection.y*4, detection.width/4, detection.height/4);    
         
@@ -135,9 +154,9 @@ function draw() {
 //        meow.rate(1-(detection.x-width/2)/1000);
 //      } 
           if (detection.label === 'cell phone') {
-        if(phonestate ==0 && phonelocalstate ==0&& !ringtone.isPlaying()){
-          ringtone.play();
-          ringtone.loop();
+        if(phonestate ==0 && phonelocalstate ==0&& !phonesound.isPlaying()){
+          phonesound.play();
+          phonesound.loop();
         }
         phonestate = 1;
         phonelocalstate = 1;
@@ -145,20 +164,40 @@ function draw() {
             phonetime1++;
             phonetime2 = 0;
       }     
-    
+      if (detection.label === 'teddy bear') {
+        if(bearstate ==0 && bearlocalstate ==0&& !bearsound.isPlaying()){
+          bearsound.play();
+          bearsound.loop();
+        }
+        bearstate = 1;
+        bearlocalstate = 1;
+        image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+            beartime1++;
+            beartime2 = 0;
+      }     
+      if(phonelocalstate == 0){
+          phonetime2++;
+        if(phonetime2 > 3){
+          phonestate = 0;
+          phonesound.stop();
+        }
+          phonetime1=0;
+      }  
+    if(bearlocalstate == 0){
+         beartime2++;
+      if(beartime2 > 3){
+          bearstate = 0;
+          bearsound.stop();
+        }
+          beartime1=0;
+      }  
     })
   }
 
-    if(phonelocalstate == 0){
-          phonetime2++;
-        if(phonetime2 > 3){
-        phonestate = 0;
-        ringtone.stop();
-        }
-          phonetime1=0;
-    }
+
   personlocalstate = 0;
   phonelocalstate = 0;
+  bearlocalstate = 0;
 }
 
   	class ObjectDetected {
