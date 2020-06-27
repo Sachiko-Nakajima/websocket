@@ -48,6 +48,14 @@ function setup() {
   kitty = loadImage("images/kitty.jpeg");
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
+  cup = loadImage("images/cup.png");
+  phonesound.loop();
+  phonesound.amp(0);  
+  bearsound.loop();
+  bearsound.amp(0);
+  cupsound.loop();
+  cupsound.amp(0);
+
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
  socket.on('detected', newDrawing);
@@ -59,15 +67,16 @@ function newDrawing(data){
   if(data.label == 'person'){
     image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
   if(data.label == 'cell phone'){
-    image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-    if(!phonesound.isPlaying()){
-      phonesound.play();}
+      image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      phonesound.amp(0.3);
     }
   if(data.label == 'teddy bear'){
-    image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-    if(!bearsound.isPlaying()){
-      bearsound.play();}
+      image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      bearsound.amp(0.3);}
     }
+  if(data.label == 'cup'){
+      image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      cupsound.amp(0.3);}
 }
 
 function modelReady() {
@@ -122,7 +131,8 @@ function draw() {
   
   time++;
   
-  if (detections) {
+  if (camState){
+    if (detections) {
     detections.forEach(detection => {
       fill(0);
       stroke(0);
@@ -154,9 +164,8 @@ function draw() {
 //        meow.rate(1-(detection.x-width/2)/1000);
 //      } 
           if (detection.label === 'cell phone') {
-        if(phonestate ==0 && phonelocalstate ==0&& !phonesound.isPlaying()){
-          phonesound.play();
-          phonesound.loop();
+        if(phonestate ==0 && phonelocalstate ==0){
+          phonesound.amp(0.3);
         }
         phonestate = 1;
         phonelocalstate = 1;
@@ -165,9 +174,8 @@ function draw() {
             phonetime2 = 0;
       }     
       if (detection.label === 'teddy bear') {
-        if(bearstate ==0 && bearlocalstate ==0&& !bearsound.isPlaying()){
-          bearsound.play();
-          bearsound.loop();
+        if(bearstate ==0 && bearlocalstate ==0){
+          bearsound.amp(0.3);
         }
         bearstate = 1;
         bearlocalstate = 1;
@@ -175,11 +183,22 @@ function draw() {
             beartime1++;
             beartime2 = 0;
       }     
+      if (detection.label === 'cup') {
+        if(cupstate ==0 && cuplocalstate ==0){
+          cupsound.amp(0.3);
+        }
+        cupstate = 1;
+        cuplocalstate = 1;
+        image(cup, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+            cuptime1++;
+            cuptime2 = 0;
+      }   
+
       if(phonelocalstate == 0){
           phonetime2++;
         if(phonetime2 > 3){
           phonestate = 0;
-          phonesound.stop();
+          phonesound.amp(0);
         }
           phonetime1=0;
       }  
@@ -187,10 +206,19 @@ function draw() {
          beartime2++;
       if(beartime2 > 3){
           bearstate = 0;
-          bearsound.stop();
+          bearsound.amp(0);
         }
           beartime1=0;
-      }  
+      }
+    
+   if(cuplocalstate == 0){
+        cuptime2++;
+     if(cuptime2 > 3){
+         cupstate = 0;
+         cupsound.amp(0);
+       }
+         cuptime1=0;
+     }  
     })
   }
 
@@ -198,27 +226,7 @@ function draw() {
   personlocalstate = 0;
   phonelocalstate = 0;
   bearlocalstate = 0;
+  cuplocalstate = 0;
 }
-
-  	class ObjectDetected {
-		constructor(id, x, y, state, localstate, ontime, offtime) {
-			this.id = id;
-			this.x = x;
-			this.y = y;
-			this.state = state;
-			this.localstate = localstate;
-			this.ontime = ontime;
-			this.offtime = offtime;
-		}
-
-		move() {
-		}
-
-		show() {
-			push();
-			translate(this.x,this.y);
-			pop();
-		}
-
-	}
+}
 
