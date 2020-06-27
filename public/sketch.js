@@ -66,7 +66,6 @@ function setup() {
 function loaded(){
   phonesound.setVolume(0);  
   phonesound.loop();
-  bearsound.loop();
   cupsound.setVolume(0);
   cupsound.loop();
   testsound.play();
@@ -84,7 +83,8 @@ function newDrawing(data){
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      bearsound.setVolume(1);}
+      if(!bearsound.isPlaying();){}
+      bearsound.play();}}
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
@@ -179,7 +179,9 @@ function draw() {
             phonetime2 = 0;
       }     
       if (detection.label === 'teddy bear') {
-          bearsound.setVolume(1);
+        if(bearstate==0 && bearlocalstate==0){
+            bearsound.loop();
+        }
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
