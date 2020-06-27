@@ -28,7 +28,7 @@ let cam_y =-220;
 
 function preload() {
   //load meow sound:
-  personsound = loadSound("audios/bass.wav");
+  //personsound = loadSound("audios/bass.wav");
   phonesound = loadSound("audios/piano.wav");
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
