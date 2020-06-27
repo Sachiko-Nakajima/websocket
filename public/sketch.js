@@ -83,7 +83,7 @@ function newDrawing(data){
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      if(!bearsound.isPlaying){}
+      if(!bearsound.isPlaying){
       bearsound.play();}}
 
   if(data.label == 'cup'){
