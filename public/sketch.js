@@ -53,10 +53,13 @@ function setup() {
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
+  phonesound.play();
   phonesound.loop();
   phonesound.setVolume(0);  
+  bearsound.play();
   bearsound.loop();
   bearsound.setVolume(0.3);
+  cupsound.play();
   cupsound.loop();
   cupsound.setVolume(0);
 
