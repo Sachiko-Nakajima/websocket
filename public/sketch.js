@@ -197,7 +197,7 @@ function draw() {
 
       if(phonelocalstate == 0){
           phonetime2++;
-        if(phonetime2 > 3){
+        if(phonetime2 > 5){
           phonestate = 0;
           phonesound.stop();
         }
