@@ -163,9 +163,7 @@ function draw() {
         persontime2 = 0;
       }
       if (detection.label === 'cell phone') {
-        if(phonestate ==0 && phonelocalstate ==0){
           phonesound.setVolume(1);
-        }
         phonestate = 1;
         phonelocalstate = 1;
         image(phone, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
@@ -173,9 +171,7 @@ function draw() {
             phonetime2 = 0;
       }     
       if (detection.label === 'teddy bear') {
-        if(bearstate ==0 && bearlocalstate ==0){
           bearsound.setVolume(1);
-        }
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
@@ -183,9 +179,7 @@ function draw() {
             beartime2 = 0;
       }     
       if (detection.label === 'cup') {
-        if(cupstate ==0 && cuplocalstate ==0){
           cupsound.setVolume(1);
-        }
         cupstate = 1;
         cuplocalstate = 1;
         image(cup, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
