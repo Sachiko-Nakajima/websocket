@@ -26,9 +26,10 @@ let socket;
 let button; 
 let font1_shadow;
 let camera_1;
-var camButton;
-var camState = false;
+let camButton;
+let camState = false;
 let cam_y =-220;
+let testsound;
 
 function preload() {
   //load meow sound:
@@ -37,6 +38,7 @@ function preload() {
   phonesound = loadSound("audios/piano.wav");
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
+  testsound = loadSound("audios/sax.wav");
 }
 
 function setup() {
@@ -63,6 +65,7 @@ function setup() {
  bearsound.loop();
  cupsound.setVolume(0);
  cupsound.loop();
+ testsound.play();
 }
 
 function newDrawing(data){
