@@ -72,15 +72,15 @@ function newDrawing(data){
     image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      phonesound.setVolume(0.3);
+      phonesound.setVolume(1);
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      bearsound.setVolume(0.3);}
+      bearsound.setVolume(1);}
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      cupsound.setVolume(0.3);}
+      cupsound.setVolume(1);}
 }
 
 function modelReady() {
@@ -164,7 +164,7 @@ function draw() {
       }
       if (detection.label === 'cell phone') {
         if(phonestate ==0 && phonelocalstate ==0){
-          phonesound.setVolume(0.3);
+          phonesound.setVolume(1);
         }
         phonestate = 1;
         phonelocalstate = 1;
@@ -174,7 +174,7 @@ function draw() {
       }     
       if (detection.label === 'teddy bear') {
         if(bearstate ==0 && bearlocalstate ==0){
-          bearsound.setVolume(0.3);
+          bearsound.setVolume(1);
         }
         bearstate = 1;
         bearlocalstate = 1;
@@ -184,7 +184,7 @@ function draw() {
       }     
       if (detection.label === 'cup') {
         if(cupstate ==0 && cuplocalstate ==0){
-          cupsound.setVolume(0.3);
+          cupsound.setVolume(1);
         }
         cupstate = 1;
         cuplocalstate = 1;
