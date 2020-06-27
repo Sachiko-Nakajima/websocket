@@ -33,6 +33,7 @@ let cam_y =-220;
 function preload() {
   //load meow sound:
   //personsound = loadSound("audios/bass.wav");
+  soundFormats('mp3', 'ogg', 'wav');
   phonesound = loadSound("audios/piano.wav");
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
@@ -53,15 +54,12 @@ function setup() {
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
-  phonesound.play();
-  phonesound.loop();
   phonesound.setVolume(0);  
-  bearsound.play();
+  phonesound.loop();
+  bearsound.setVolume(1);
   bearsound.loop();
-  bearsound.setVolume(0.3);
-  cupsound.play();
-  cupsound.loop();
   cupsound.setVolume(0);
+  cupsound.loop();
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
