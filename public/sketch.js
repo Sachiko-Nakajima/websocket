@@ -63,14 +63,6 @@ function setup() {
 
 }
 
-function loaded(){
-  phonesound.setVolume(0);  
-  phonesound.loop();
-  cupsound.setVolume(0);
-  cupsound.loop();
-  testsound.play();
-}
-
 
 function newDrawing(data){
   noStroke();
@@ -79,7 +71,8 @@ function newDrawing(data){
     image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      phonesound.setVolume(1);
+      if(!phonesound.isPlaying){
+        phonesound.play();}
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
@@ -88,7 +81,8 @@ function newDrawing(data){
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      cupsound.setVolume(1);}
+      if(!cupsound.isPlaying){
+        cupsound.play();}}
 }
 
 function modelReady() {
@@ -171,7 +165,9 @@ function draw() {
         persontime2 = 0;
       }
       if (detection.label === 'cell phone') {
-          phonesound.setVolume(1);
+        if(phonestate==0 && phonelocalstate==0){
+          phonesound.loop();
+        }
         phonestate = 1;
         phonelocalstate = 1;
         image(phone, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
@@ -189,7 +185,9 @@ function draw() {
             beartime2 = 0;
       }     
       if (detection.label === 'cup') {
-          cupsound.setVolume(1);
+        if(cupstate==0 && cuplocalstate==0){
+          cupsound.loop();
+      }
         cupstate = 1;
         cuplocalstate = 1;
         image(cup, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
@@ -201,7 +199,7 @@ function draw() {
           phonetime2++;
         if(phonetime2 > 3){
           phonestate = 0;
-          phonesound.setVolume(0);
+          phonesound.stop();
         }
           phonetime1=0;
       }  
@@ -218,7 +216,7 @@ function draw() {
         cuptime2++;
      if(cuptime2 > 3){
          cupstate = 0;
-         cupsound.setVolume(0);
+         cupsound.stop();
        }
          cuptime1=0;
      }  
