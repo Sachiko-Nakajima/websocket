@@ -209,7 +209,7 @@ function draw() {
          beartime2++;
       if(beartime2 > 3){
           bearstate = 0;
-          bearsound.setVolume(0);
+          bearsound.stop();
         }
           beartime1=0;
       }
