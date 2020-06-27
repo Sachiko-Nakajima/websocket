@@ -54,11 +54,11 @@ function setup() {
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   phonesound.loop();
-  phonesound.amp(0);  
+  phonesound.volume(0);  
   bearsound.loop();
-  bearsound.amp(0);
+  bearsound.volume(0);
   cupsound.loop();
-  cupsound.amp(0);
+  cupsound.volume(0);
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
@@ -72,15 +72,15 @@ function newDrawing(data){
     image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      phonesound.amp(0.3);
+      phonesound.volume(0.3);
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      bearsound.amp(0.3);}
+      bearsound.volume(0.3);}
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      cupsound.amp(0.3);}
+      cupsound.volume(0.3);}
 }
 
 function modelReady() {
@@ -174,7 +174,7 @@ function draw() {
       }     
       if (detection.label === 'teddy bear') {
         if(bearstate ==0 && bearlocalstate ==0){
-          bearsound.amp(0.3);
+          bearsound.volume(0.3);
         }
         bearstate = 1;
         bearlocalstate = 1;
@@ -184,7 +184,7 @@ function draw() {
       }     
       if (detection.label === 'cup') {
         if(cupstate ==0 && cuplocalstate ==0){
-          cupsound.amp(0.3);
+          cupsound.volume(0.3);
         }
         cupstate = 1;
         cuplocalstate = 1;
@@ -197,7 +197,7 @@ function draw() {
           phonetime2++;
         if(phonetime2 > 3){
           phonestate = 0;
-          phonesound.amp(0);
+          phonesound.volume(0);
         }
           phonetime1=0;
       }  
@@ -205,7 +205,7 @@ function draw() {
          beartime2++;
       if(beartime2 > 3){
           bearstate = 0;
-          bearsound.amp(0);
+          bearsound.volume(0);
         }
           beartime1=0;
       }
@@ -214,7 +214,7 @@ function draw() {
         cuptime2++;
      if(cuptime2 > 3){
          cupstate = 0;
-         cupsound.amp(0);
+         cupsound.volume(0);
        }
          cuptime1=0;
      }  
