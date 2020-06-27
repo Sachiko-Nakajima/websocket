@@ -56,7 +56,7 @@ function setup() {
   phonesound.loop();
   phonesound.setVolume(0);  
   bearsound.loop();
-  bearsound.setVolume(0);
+  bearsound.setVolume(0.3);
   cupsound.loop();
   cupsound.setVolume(0);
 
