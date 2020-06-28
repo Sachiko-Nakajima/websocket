@@ -57,6 +57,7 @@ function setup() {
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   bearsound.loop();
+  bearsound.setVolume(0);
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
@@ -77,8 +78,7 @@ function newDrawing(data){
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
-      if(!bearsound.isPlaying){
-      bearsound.play();}}
+      bearsound.setVolume(1);}
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
@@ -176,9 +176,7 @@ function draw() {
             phonetime2 = 0;
       }     
       if (detection.label === 'teddy bear') {
-        if(bearstate==0 && bearlocalstate==0){
-            bearsound.loop();
-        }
+        bearsound.setVolume(1);
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
@@ -206,9 +204,9 @@ function draw() {
       }  
     if(bearlocalstate == 0){
          beartime2++;
-      if(beartime2 > 3){
+      if(beartime2 > 5 && beartime2 < 100){
           bearstate = 0;
-          bearsound.stop();
+          bearsound.setVolume(0);
         }
           beartime1=0;
       }
