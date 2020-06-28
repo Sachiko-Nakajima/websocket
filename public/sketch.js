@@ -29,16 +29,12 @@ let camera_1;
 let camButton;
 let camState = false;
 let cam_y =-220;
-let testsound;
 
 function preload() {
-  //load meow sound:
-  //personsound = loadSound("audios/bass.wav");
   soundFormats('mp3', 'ogg', 'wav');
   phonesound = loadSound("audios/piano.wav");
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
-  testsound = loadSound("audios/sax.wav");
   kitty = loadImage("images/kitty.jpeg");
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
@@ -54,7 +50,7 @@ function setup() {
   camera_1.hide()
   camButton = document.getElementById("camera1");
 
-  detector = ml5.objectDetector('yolo', modelReady)  //activate the ml5 Object Detection machine learning model
+  detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
 
   bearsound.loop();
   bearsound.setVolume(0);
@@ -196,7 +192,8 @@ function draw() {
       }   
 
       if(phonelocalstate == 0){
-          phonetime2++;
+        if(phonetime2 <150){
+          phonetime2++;}
         if(phonetime2 > 25 && phonetime2<100){
           phonestate = 0;
           phonesound.setVolume(0);
@@ -204,7 +201,8 @@ function draw() {
           phonetime1=0;
       }  
     if(bearlocalstate == 0){
-         beartime2++;
+      if(beartime2 <150){
+        beartime2++;}
       if(beartime2 > 5 && beartime2 < 100){
           bearstate = 0;
           bearsound.setVolume(0);
@@ -213,14 +211,15 @@ function draw() {
       }
     
    if(cuplocalstate == 0){
-        cuptime2++;
+    if(cuptime2 <150){
+      cuptime2++;}
      if(cuptime2 > 25 && cuptime2<100){
          cupstate = 0;
          cupsound.setVolume(0);
        }
          cuptime1=0;
      }
-     console.log("beartime2" + beartime2)  
+     console.log("beartime2" + beartime2);
     })
   }
 
@@ -231,4 +230,3 @@ function draw() {
   cuplocalstate = 0;
 }
 }
-
