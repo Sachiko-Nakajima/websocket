@@ -221,7 +221,15 @@ function draw() {
        }
          cuptime1=0;
      }
-     console.log("beartime2" + beartime2);
+     if(phonetime2<150){
+     console.log("phonetime2 is:" + phonetime2);
+     }
+     if(beartime2<150){
+      console.log("beartime2 is:" + beartime2);
+     }
+     if(cuptime2<150){
+      console.log("cuptime2 is:" + cuptime2);
+     }
 
   personlocalstate = 0;
   phonelocalstate = 0;
