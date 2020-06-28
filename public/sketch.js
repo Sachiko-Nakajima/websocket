@@ -39,6 +39,10 @@ function preload() {
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
   testsound = loadSound("audios/sax.wav");
+  kitty = loadImage("images/kitty.jpeg");
+  phone = loadImage("images/phone.png");
+  bear = loadImage("images/bear.jpeg");
+  cup = loadImage("images/cup.png");
 }
 
 function setup() {
@@ -51,11 +55,9 @@ function setup() {
   camButton = document.getElementById("camera1");
 
   detector = ml5.objectDetector('yolo', modelReady)  //activate the ml5 Object Detection machine learning model
-  
-  kitty = loadImage("images/kitty.jpeg");
-  phone = loadImage("images/phone.png");
-  bear = loadImage("images/bear.jpeg");
-  cup = loadImage("images/cup.png");
+
+  bearsound.loop();
+  bearsound.setVolume(0);
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
@@ -63,10 +65,6 @@ function setup() {
 
 }
 
-function loaded() {
-  bearsound.loop();
-  bearsound.setVolume(0);
-}
 
 function newDrawing(data){
   noStroke();
@@ -179,7 +177,7 @@ function draw() {
       }     
       if (detection.label === 'teddy bear') {
         bearsound.setVolume(1);
-        console.log("bearsound volume is now high");
+        console.log(bearsound.isPlaying);
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
