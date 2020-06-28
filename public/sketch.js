@@ -197,7 +197,7 @@ function draw() {
 
       if(phonelocalstate == 0){
           phonetime2++;
-        if(phonetime2 > 20 && phonetime2<100){
+        if(phonetime2 > 25 && phonetime2<100){
           phonestate = 0;
           phonesound.setVolume(0);
         }
@@ -214,12 +214,13 @@ function draw() {
     
    if(cuplocalstate == 0){
         cuptime2++;
-     if(cuptime2 > 5 && cuptime2<100){
+     if(cuptime2 > 25 && cuptime2<100){
          cupstate = 0;
          cupsound.setVolume(0);
        }
          cuptime1=0;
-     }  
+     }
+     console.log("beartime2" + beartime2)  
     })
   }
 
