@@ -146,7 +146,7 @@ function draw() {
       strokeWeight(1);
       textSize(18);
       text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
-      console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
+      //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
       label: detection.label, 
        x: detection.x,
@@ -177,6 +177,7 @@ function draw() {
       }     
       if (detection.label === 'teddy bear') {
         bearsound.setVolume(1);
+        console.log("bearsound volume is now high");
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
