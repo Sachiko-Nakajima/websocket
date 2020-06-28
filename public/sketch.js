@@ -45,7 +45,7 @@ function setup() {
 
   createCanvas(800,800);
   camera_1 = createCapture(VIDEO);
-  camera_1.size(200,100);
+  camera_1.size(200,200);
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
@@ -70,17 +70,17 @@ function newDrawing(data){
   noStroke();
   fill(200,0,100);
   if(data.label == 'person'){
-    image(kitty, 800-data.x*4, data.y*4, data.w/4, data.h/4);}
+    image(kitty, 800-data.x*4, data.y*4, data.w, data.h);}
   if(data.label == 'cell phone'){
-      image(phone, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      image(phone, 800-data.x*4, data.y*4, data.w, data.h);
         phonesound.setVolume(1);
     }
   if(data.label == 'teddy bear'){
-      image(bear, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      image(bear, 800-data.x*4, data.y*4, data.w, data.h);
       bearsound.setVolume(1);}
 
   if(data.label == 'cup'){
-      image(cup, 800-data.x*4, data.y*4, data.w/4, data.h/4);
+      image(cup, 800-data.x*4, data.y*4, data.w, data.h);
         cupsound.setVolume(1);}
 }
 
@@ -159,7 +159,7 @@ function draw() {
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
-        image(kitty, 800-detection.x*4, detection.y*4, detection.width/4, detection.height/4); 
+        image(kitty, 800-detection.x*4, detection.y*4, detection.width, detection.height); 
         persontime1++;
         persontime2 = 0;
       }
@@ -168,7 +168,7 @@ function draw() {
         console.log("phonesound is" + phonesound.isPlaying);
         phonestate = 1;
         phonelocalstate = 1;
-        image(phone, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+        image(phone, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
             phonetime1++;
             phonetime2 = 0;
       }     
@@ -177,7 +177,7 @@ function draw() {
         console.log("bearsound is" + bearsound.isPlaying);
         bearstate = 1;
         bearlocalstate = 1;
-        image(bear, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+        image(bear, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
             beartime1++;
             beartime2 = 0;
       }     
@@ -186,7 +186,7 @@ function draw() {
         console.log("cupsound is" + cupsound.isPlaying);
         cupstate = 1;
         cuplocalstate = 1;
-        image(cup, 800-detection.x*4, detection.y*4, detection.width/2, detection.height/2);    
+        image(cup, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
             cuptime1++;
             cuptime2 = 0;
       }   
