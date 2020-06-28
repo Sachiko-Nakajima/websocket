@@ -190,7 +190,9 @@ function draw() {
             cuptime1++;
             cuptime2 = 0;
       }   
-
+    })
+  }
+}
       if(phonelocalstate == 0){
         if(phonetime2 <150){
           phonetime2++;}
@@ -213,20 +215,16 @@ function draw() {
    if(cuplocalstate == 0){
     if(cuptime2 <150){
       cuptime2++;}
-     if(cuptime2 > 25 && cuptime2<100){
+     if(cuptime2 > 15 && cuptime2<100){
          cupstate = 0;
          cupsound.setVolume(0);
        }
          cuptime1=0;
      }
      console.log("beartime2" + beartime2);
-    })
-  }
-
 
   personlocalstate = 0;
   phonelocalstate = 0;
   bearlocalstate = 0;
   cuplocalstate = 0;
-}
 }
