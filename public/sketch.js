@@ -80,7 +80,7 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
- socket.on('detected', newDrawing);
+// socket.on('detected', newDrawing);
 }
 
 function nameinput(){
