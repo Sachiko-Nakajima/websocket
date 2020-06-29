@@ -271,23 +271,24 @@ noStroke();
       console.log("cuptime2 is:" + cuptime2);
      }
 
-  personlocalstate = 0;
-  phonelocalstate = 0;
-  bearlocalstate = 0;
-  cuplocalstate = 0;
 
 if(time%5==0){
-  if(phonereceivenum==prephonereceivenum){
+  if(phonereceivenum==prephonereceivenum&&phonetime2>5){
     phonesound.setVolume(0);
   }
-  if(bearreceivenum==prebearreceivenum){
+  if(bearreceivenum==prebearreceivenum&&beartime2>5){
     bearsound.setVolume(0);
   }
-  if(cupreceivenum==precupreceivenum){
+  if(cupreceivenum==precupreceivenum&&cuptime2>5){
     cupsound.setVolume(0);
   }
   prephonereceivenum = phonereceivenum;
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
 }
+personlocalstate = 0;
+phonelocalstate = 0;
+bearlocalstate = 0;
+cuplocalstate = 0;
+
 }
