@@ -57,21 +57,15 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
-  input = createInput();
-  input.position(200, 80);
+  // input = createInput();
+  // input.position(200, 80);
 
-  button = createButton('submit');
-  button.position(input.x + input.width, 80);
-  button.mousePressed(nameinput);
+  button = createButton('start');
+  button.position(200,80);
+  //(input.x + input.width, 80);
+  button.mousePressed(appstart);
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
-
-  bearsound.loop();
-  bearsound.setVolume(0);
-  phonesound.loop();
-  phonesound.setVolume(0);
-  cupsound.loop();
-  cupsound.setVolume(0);
 
   r = random(255);
   g = random(255);
@@ -83,9 +77,16 @@ function setup() {
  socket.on('detected', newDrawing);
 }
 
-function nameinput(){
-  name = input.value();
-  console.log(name);
+function loaded(){
+}
+
+function appstart(){
+  bearsound.loop();
+  bearsound.setVolume(0);
+  phonesound.loop();
+  phonesound.setVolume(0);
+  cupsound.loop();
+  cupsound.setVolume(0);
 }
 
 
