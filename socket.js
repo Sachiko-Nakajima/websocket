@@ -20,10 +20,10 @@ io.on('connection', newConnection);
 function newConnection(socket){
     console.log('new connection: ' + socket.id);
 //    socket.on('person', personMsg);
-    socket.on('mouse', mouseMsg);
+    socket.on('detected', dataMsg);
 
-    function mouseMsg(data){
-        socket.broadcast.emit('mouse', data);
+    function dataMsg(data){
+        socket.broadcast.emit('detected', data);
         console.log(data);
     }
 }

@@ -29,6 +29,7 @@ let camera_1;
 let camButton;
 let camState = false;
 let cam_y =-220;
+let name;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -49,6 +50,12 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
+  input = createInput();
+  input.position(20, 65);
+
+  button = createButton('submit');
+  button.position(input.x + input.width, 65);
+  button.mousePressed(nameinput);
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
 
@@ -62,7 +69,10 @@ function setup() {
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
  socket.on('detected', newDrawing);
+}
 
+function nameinput(){
+  name = input.value();
 }
 
 
