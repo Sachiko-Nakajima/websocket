@@ -203,11 +203,12 @@ function draw() {
       }   
     })
   }
+}
 
       if(phonelocalstate == 0){
         if(phonetime2 <150){
           phonetime2++;}
-        if(phonetime2 > 25 && phonetime2<100){
+        if(phonetime2 > 15 && phonetime2<100){
           phonestate = 0;
           phonesound.setVolume(0);
         }
