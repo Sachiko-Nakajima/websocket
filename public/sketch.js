@@ -31,6 +31,12 @@ let camState = false;
 let cam_y =-220;
 let name;
 let r,g,b;
+let phonereceivenum=0;
+let bearreceivenum=0;
+let cupreceivenum=0;
+let prephonereceivenum=0;
+let prebearreceivenum=0;
+let precupreceivenum=0;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -91,14 +97,23 @@ function newDrawing(data){
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*4, data.w, data.h);
         phonesound.setVolume(1);
+        phonereceivenum++;
     }
   if(data.label == 'teddy bear'){
       image(bear, 800-data.x*4, data.y*4, data.w, data.h);
-      bearsound.setVolume(1);}
+      bearsound.setVolume(1);
+      bearreceivenum++;
+    }
 
   if(data.label == 'cup'){
       image(cup, 800-data.x*4, data.y*4, data.w, data.h);
-        cupsound.setVolume(1);}
+        cupsound.setVolume(1);
+        cupreceivenum++;
+      }
+  noFill();
+  strokeWeight(3);
+  stroke(data.r, data.b, data.g);
+  rect(800-data.x*4, data.y*4, data.w, data.h);  
 }
 
 function modelReady() {
@@ -258,4 +273,19 @@ function draw() {
   phonelocalstate = 0;
   bearlocalstate = 0;
   cuplocalstate = 0;
+
+if(time%5==0){
+  if(phonereceivenum==prephonereceivenum){
+    phonesound.setVolume(0);
+  }
+  if(bearreceivenum==prebearreceivenum){
+    bearsound.setVolume(0);
+  }
+  if(cupreceivenum==precupreceivenum){
+    cupsound.setVolume(0);
+  }
+  prephonereceivenum = phonereceivenum;
+  prebearreceivenum = bearreceivenum;
+  precupreceivenum = cupreceivenum;
+}
 }
