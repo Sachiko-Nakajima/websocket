@@ -30,7 +30,7 @@ let camButton;
 let camState = false;
 let cam_y =-220;
 let name;
-let r,g,b;
+let colorr,colorg,colorb;
 let phonereceivenum=0;
 let bearreceivenum=0;
 let cupreceivenum=0;
@@ -67,9 +67,9 @@ function setup() {
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
 
-  r = random(255);
-  g = random(255);
-  b = random(255);
+  colorr = random(255);
+  colorg = random(255);
+  colorb = random(255);
   
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
@@ -112,8 +112,13 @@ function newDrawing(data){
       }
   noFill();
   strokeWeight(3);
-  stroke(data.r, data.b, data.g);
+  stroke(data.r, data.g, data.b);
   rect(800-data.x*4, data.y*4, data.w, data.h);  
+  fill(0);
+  stroke(0);
+  strokeWeight(1);
+  textSize(18);
+  text(data.label, 800-data.x*4 + 10, data.y*4-10);
 }
 
 function modelReady() {
@@ -181,15 +186,15 @@ noStroke();
       text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
       noFill();
       strokeWeight(3);
-      stroke(r, b, g);
+      stroke(colorr, colorb, colorg);
       rect(800-detection.x*4, detection.y*4, detection.width, detection.height);
 
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
       label: detection.label, 
-       r: r,
-       g: g,
-       b: b,
+       r: colorr,
+       g: colorg,
+       b: colorb,
        x: detection.x,
        y: detection.y,
        w: detection.width,
