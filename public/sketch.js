@@ -74,7 +74,6 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
- socket.on('detected', newDrawing);
 }
 
 function loaded(){
@@ -147,6 +146,8 @@ camState=!camState;
 function draw() {
 //  if(time%10==0){
   background(240,210,210);
+  socket.on('detected', newDrawing);
+
 //  }
 //socket.on('detected', newDrawing);
 noStroke();
