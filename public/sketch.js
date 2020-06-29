@@ -30,6 +30,7 @@ let camButton;
 let camState = false;
 let cam_y =-220;
 let name;
+let r,g,b;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -65,6 +66,11 @@ function setup() {
   phonesound.setVolume(0);
   cupsound.loop();
   cupsound.setVolume(0);
+
+  r = random(255);
+  g = random(255);
+  b = random(255);
+  
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
@@ -155,18 +161,23 @@ function draw() {
       strokeWeight(1);
       textSize(18);
       text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
+      noFill();
+      strokeWeight(3);
+      stroke(r, b, g);
+      rect(800-detection.x*4, detection.y*4, detection.width, detection.height);
+
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
       label: detection.label, 
+       r: r,
+       g: g,
+       b: b,
        x: detection.x,
        y: detection.y,
        w: detection.width,
        h: detection.height
       }
       socket.emit('detected', data);       
-      noFill();
-      strokeWeight(3);
-      stroke(0, 255, 0);
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
