@@ -147,7 +147,8 @@ function draw() {
 //  if(time%10==0){
   background(240,210,210);
 //  }
-  noStroke();
+socket.on('detected', newDrawing);
+noStroke();
   fill(255)
   rect(0,0,800,160);
   push();
