@@ -51,10 +51,10 @@ function setup() {
   camera_1.hide()
   camButton = document.getElementById("camera1");
   input = createInput();
-  input.position(20, 65);
+  input.position(200, 80);
 
   button = createButton('submit');
-  button.position(input.x + input.width, 65);
+  button.position(input.x + input.width, 80);
   button.mousePressed(nameinput);
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
@@ -73,6 +73,7 @@ function setup() {
 
 function nameinput(){
   name = input.value();
+  console.log(name);
 }
 
 
@@ -202,7 +203,7 @@ function draw() {
       }   
     })
   }
-}
+
       if(phonelocalstate == 0){
         if(phonetime2 <150){
           phonetime2++;}
