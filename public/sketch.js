@@ -80,7 +80,7 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
-// socket.on('detected', newDrawing);
+ socket.on('detected', newDrawing);
 }
 
 function nameinput(){
@@ -244,7 +244,7 @@ noStroke();
     if(bearlocalstate == 0){
       if(beartime2 <150){
         beartime2++;}
-      if(beartime2 > 5 && beartime2 < 100){
+      if(beartime2 > 15 && beartime2 < 100){
           bearstate = 0;
           bearsound.setVolume(0);
         }
