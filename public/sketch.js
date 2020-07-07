@@ -4,6 +4,7 @@ let kitty;
 let phonesound, phone;
 let bearsound, bear;
 let cupsound, cup;
+let bottlesound, bottle;
 let personlocalstate = 0;
 let personstate = 0;
 let phonelocalstate = 0;
@@ -12,6 +13,8 @@ let bearlocalstate = 0;
 let bearstate = 0;
 let cuplocalstate = 0;
 let cupstate = 0;
+let bottlelocalstate = 0;
+let bottlestate = 0;
 let persontime1 = 0;
 let persontime2 = 0;
 let phonetime1 = 0;
@@ -20,6 +23,8 @@ let beartime1 = 0;
 let beartime2 = 0;
 let cuptime1 = 0;
 let cuptime2 = 0;
+let bottletime1 = 0;
+let bottletime2 = 0;
 let time = 0;
 let objects = [];
 let socket;
@@ -34,19 +39,23 @@ let colorr,colorg,colorb;
 let phonereceivenum=0;
 let bearreceivenum=0;
 let cupreceivenum=0;
+let bottlereceivenum=0;
 let prephonereceivenum=0;
 let prebearreceivenum=0;
 let precupreceivenum=0;
+let prebottlereceivenum=0;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
   phonesound = loadSound("audios/piano.wav");
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
+  bottlesound = loadSound("audios/recorder.wav");
   kitty = loadImage("images/kitty.jpeg");
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
+  bottle = loadImage("images/bottle.jpeg");
 }
 
 function setup() {
@@ -87,6 +96,8 @@ function appstart(){
   phonesound.setVolume(0);
   cupsound.loop();
   cupsound.setVolume(0);
+  bottlesound.loop();
+  bottlesound.setVolume(0);
 }
 
 
@@ -111,6 +122,12 @@ function newDrawing(data){
         cupsound.setVolume(1);
         cupreceivenum++;
       }
+
+  if(data.label == 'bottle'){
+        image(bottle, 800-data.x*4, data.y*4, data.w, data.h);
+          bottlesound.setVolume(1);
+          bottlereceivenum++;
+        }
   noFill();
   strokeWeight(3);
   stroke(data.r, data.g, data.b);
@@ -236,6 +253,15 @@ noStroke();
             cuptime1++;
             cuptime2 = 0;
       }   
+      if (detection.label === 'bottle') {
+        bottlesound.setVolume(1);
+        console.log("bottlesound is" + bottlesound.isPlaying);
+        bottlestate = 1;
+        bottlelocalstate = 1;
+        image(bottle, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
+          bottletime1++;
+          bottletime2 = 0;
+      }   
     })
   }
 }
@@ -268,6 +294,18 @@ noStroke();
        }
          cuptime1=0;
      }
+
+     if(bottlelocalstate == 0){
+      if(bottletime2 <150){
+        bottletime2++;}
+       if(bottletime2 > 15 && bottletime2<100){
+        bottlestate = 0;
+        bottlesound.setVolume(0);
+         }
+         bottletime1=0;
+       }
+  
+
      if(phonetime2<150){
      console.log("phonetime2 is:" + phonetime2);
      }
@@ -276,6 +314,9 @@ noStroke();
      }
      if(cuptime2<150){
       console.log("cuptime2 is:" + cuptime2);
+     }
+     if(bottletime2<150){
+      console.log("bottletime2 is:" + cuptime2);
      }
 
 
@@ -289,13 +330,17 @@ if(time%5==0){
   if(cupreceivenum==precupreceivenum&&cuptime2>5){
     cupsound.setVolume(0);
   }
+  if(bottlereceivenum==prebottlereceivenum&&bottletime2>5){
+    bottlesound.setVolume(0);
+  }
   prephonereceivenum = phonereceivenum;
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
+  prebottlereceivenum = bottlereceivenum;
 }
 personlocalstate = 0;
 phonelocalstate = 0;
 bearlocalstate = 0;
 cuplocalstate = 0;
-
+bottlelocalstate = 0;
 }
