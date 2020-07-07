@@ -92,7 +92,7 @@ function loaded(){
 
 function appstart(){
   if(!buttonstate){
-  button.label = 'stop';
+  button.value = 'stop';
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
@@ -102,7 +102,7 @@ function appstart(){
   bottlesound.loop();
   bottlesound.setVolume(0);}
   if(buttonstate){
-    button.label = 'start';
+    button.value = 'start';
     bearsound.stop();
     phonesound.stop();
     cupsound.stop();
