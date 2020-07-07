@@ -29,6 +29,7 @@ let time = 0;
 let objects = [];
 let socket;
 let button; 
+let buttonstate = false;
 let font1_shadow;
 let camera_1;
 let camButton;
@@ -90,6 +91,8 @@ function loaded(){
 }
 
 function appstart(){
+  if(!buttonstate){
+  button.label = 'stop';
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
@@ -97,7 +100,14 @@ function appstart(){
   cupsound.loop();
   cupsound.setVolume(0);
   bottlesound.loop();
-  bottlesound.setVolume(0);
+  bottlesound.setVolume(0);}
+  if(buttonstate){
+    button.label = 'start';
+    bearsound.stop();
+    phonesound.stop();
+    cupsound.stop();
+    bottlesound.stop();}
+    buttonstate = !buttonstate;
 }
 
 
