@@ -244,7 +244,7 @@ noStroke();
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
       label: detection.label, 
-      name: input.value,
+      name: input.value(),
        r: colorr,
        g: colorg,
        b: colorb,
