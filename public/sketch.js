@@ -156,7 +156,7 @@ function newDrawing2(data){
   noStroke();
   fill(0,0,255);
   ellipse(data.xx,data.yy,20,20);
-  console.log("receiving!!!!!!!!!!!!!");
+  console.log("receiving!!!!!!!!!!!!!" + data.xx);
 }
 
 
