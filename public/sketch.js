@@ -45,6 +45,8 @@ let prephonereceivenum=0;
 let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
+let buttonState = false;
+
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -84,10 +86,20 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
+
+ button = document.getElementById('start');
+ button.onclick = changeName;
+
 }
 
-function loaded(){
-}
+function changeName(){
+  buttonState = !buttonState;
+    if(buttonState == true){
+  button.innerHTML = "STOP"}else
+  {button.innerHTML ="START"}
+    
+  
+  }
 
 function appstart(){
   if(!buttonstate){
