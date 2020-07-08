@@ -28,8 +28,8 @@ let bottletime2 = 0;
 let time = 0;
 let objects = [];
 let socket;
-let button; 
-let buttonstate = false;
+let buttonnn; 
+let buttonnnstate = false;
 let font1_shadow;
 let camera_1;
 let camButton;
@@ -72,10 +72,10 @@ function setup() {
   // input = createInput();
   // input.position(200, 80);
 
-  button = createButton('start');
-  button.position(200,80);
+  buttonnn = createButton('start');
+  buttonnn.position(200,80);
   //(input.x + input.width, 80);
-  button.mousePressed(appstart);
+  buttonnn.mousePressed(appstart);
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
 
