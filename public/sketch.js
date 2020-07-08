@@ -70,10 +70,9 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
-  text("put your name here",200,40);
   input = createInput();
-  input.position(200, 80);
-  input.size(50, 20);
+  input.position(200, 100);
+  input.size(50, 15);
   // buttonnn = createButton('start');
   // buttonnn.position(200,80);
   //(input.x + input.width, 80);
@@ -194,6 +193,10 @@ function draw() {
 noStroke();
   fill(255)
   rect(0,0,800,160);
+
+  fill(colorr, colorg, colorb);
+  stroke(colorr, colorg, colorb);
+  text("put your name here",200,40);
 
   socket.on('detected', newDrawing);
  
