@@ -59,8 +59,7 @@ width:150px;
   }
   
 #latin{
-    margin-left:-80px;
-    transform:translate(0px,700px);    
+    transform:translate(-10px,700px);    
     } 
   
 #camera1{
