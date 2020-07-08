@@ -70,6 +70,10 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
+  colorr = random(255);
+  colorg = random(255);
+  colorb = random(255);
+
   input = createInput();
   input.position(200, 100);
   input.size(50, 15);
@@ -79,9 +83,6 @@ function setup() {
 
   detector = ml5.objectDetector('cocossd', modelReady)  //activate the ml5 Object Detection machine learning model
 
-  colorr = random(255);
-  colorg = random(255);
-  colorb = random(255);
   
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
@@ -196,7 +197,7 @@ noStroke();
 
   fill(colorr, colorg, colorb);
   stroke(colorr, colorg, colorb);
-  text("put your name here",200,40);
+  text("put your name here",20,40);
 
   socket.on('detected', newDrawing);
  
