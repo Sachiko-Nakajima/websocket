@@ -87,21 +87,12 @@ function setup() {
 
  button = document.getElementById('start');
  button.onclick = changeName;
- button.mousePressed(appstart);
-
 }
 
 function changeName(){
   buttonState = !buttonState;
     if(buttonState){
-  button.innerHTML = "STOP"}
-  else{
-    button.innerHTML ="START"}  
-  }
-
-function appstart(){
-  if(!buttonstate){
-  button.value('stop');
+  button.innerHTML = "STOP";
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
@@ -109,14 +100,15 @@ function appstart(){
   cupsound.loop();
   cupsound.setVolume(0);
   bottlesound.loop();
-  bottlesound.setVolume(0);}
-  if(buttonstate){
-    button.value('start');
+  bottlesound.setVolume(0);
+}
+  else{
+    button.innerHTML ="START"
     bearsound.stop();
     phonesound.stop();
     cupsound.stop();
-    bottlesound.stop();}
-    buttonstate = !buttonstate;
+    bottlesound.stop();
+  }  
 }
 
 

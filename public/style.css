@@ -53,13 +53,13 @@ width:150px;
 }
 
 #start{
-  margin-left:-220px;
+  margin-left:0px;
   transform:translate(0px,640px);    
   background: pink;
   }
   
 #latin{
-    margin-left:-220px;
+    margin-left:0px;
     transform:translate(30px,640px);    
     }
   
