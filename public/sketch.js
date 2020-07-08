@@ -150,7 +150,7 @@ function newDrawing(data){
   strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
-    text(data.label, 800-data.x*20 + 10, data.y*3+200-10);}
+    text(data.label, 800-data.x*20 + 50, data.y*3+200-50);}
   else{
       text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
@@ -215,23 +215,23 @@ noStroke();
   if (camState){
     if (detections) {
     detections.forEach(detection => {
-      fill(0);
-      stroke(0);
-      strokeWeight(1);
-      textSize(18);
-      if(detection.label=='person'){
-        text(detection.label, 800-detection.x*20, detection.y*3+200-50);}
-      else{
-        text(detection.label, 800-detection.x*4 + 10, detection.y*3+200-10);
-        }
+      // fill(0);
+      // stroke(0);
+      // strokeWeight(1);
+      // textSize(18);
+      // if(detection.label=='person'){
+      //   text(detection.label, 800-detection.x*20+10, detection.y*3+200-10);}
+      // else{
+      //   text(detection.label, 800-detection.x*4 + 10, detection.y*3+200-10);
+      //   }
 
-      noFill();
-      strokeWeight(2);
-      stroke(colorr, colorg, colorb,200);
-      if(detection.label=='person'){
-        rect(800-detection.x*20, detection.y*3+200, detection.width, detection.height);}
-      else{
-      rect(800-detection.x*4, detection.y*3+200, detection.width, detection.height);}
+      // noFill();
+      // strokeWeight(2);
+      // stroke(colorr, colorg, colorb,200);
+      // if(detection.label=='person'){
+      //   rect(800-detection.x*20, detection.y*3+200, detection.width, detection.height);}
+      // else{
+      // rect(800-detection.x*4, detection.y*3+200, detection.width, detection.height);}
 
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
