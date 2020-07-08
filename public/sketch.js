@@ -112,8 +112,9 @@ function appstart(){
 
 function newDrawing(data){
   noStroke();
-  fill(200,0,100);
-  console.log(data.label + 'is detected!');
+  fill(200,0,0);
+  ellipse(400,400,20,20);
+  console.log(data.label + 'is detected! x is:' + data.x);
   if(data.label == 'person'){
     image(kitty, 800-data.x*4, data.y*4, data.w, data.h);}
   if(data.label == 'cell phone'){
