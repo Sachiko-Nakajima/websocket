@@ -140,17 +140,15 @@ function newDrawing(data){
         }
   noFill();
   strokeWeight(3);
-  stroke(data.r, data.g, data.b);
+  stroke(data.r, data.g, data.b,200);
   if(data.label=='person'){
     rect(800-data.x*20, data.y*3+200, data.w, data.h);}
   else{
     rect(800-data.x*4, data.y*3+200, data.w, data.h);}
-  noFill(0);
-  stroke(data.r, data.g, data.b);
   strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
-    text(data.label, 800-data.x*20 + 10, data.y*3-10);}
+    text(data.label, 800-data.x*20 + 10, data.y*3+200-10);}
   else{
       text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
