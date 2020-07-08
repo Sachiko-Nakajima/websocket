@@ -53,15 +53,15 @@ width:150px;
 }
 
 #start{
-  margin-left:-150px;
+  margin-left:-100px;
   transform:translate(0px,640px);    
   background: pink;
   }
   
-#latin{
+/* #latin{
     margin-left:-150px;
     transform:translate(30px,640px);    
-    }
+    } */
   
 #camera1{
   position:relative;

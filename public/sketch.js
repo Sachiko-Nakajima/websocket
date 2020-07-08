@@ -46,6 +46,7 @@ let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
 let buttonState = false;
+let button;
 
 
 function preload() {
