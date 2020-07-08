@@ -84,8 +84,6 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
- socket.on('detected', newDrawing);
- socket.on('test', newDrawing2);
 }
 
 function loaded(){
@@ -198,6 +196,10 @@ function draw() {
 noStroke();
   fill(255)
   rect(0,0,800,160);
+
+  socket.on('detected', newDrawing);
+  socket.on('test', newDrawing2);
+ 
   push();
   translate(800, 0);
   //then scale it by -1 in the x-axis
