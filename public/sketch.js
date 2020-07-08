@@ -220,14 +220,14 @@ noStroke();
       strokeWeight(1);
       textSize(18);
       if(detection.label=='person'){
-        text(detection.label, 800-detection.x*20 - 50, detection.y*3+200-50);}
+        text(detection.label, 800-detection.x*20 + 50, detection.y*3+200-50);}
       else{
         text(detection.label, 800-detection.x*4 + 10, detection.y*3+200-10);
         }
 
       noFill();
-      strokeWeight(3);
-      stroke(colorr, colorg, colorb);
+      strokeWeight(2);
+      stroke(colorr, colorg, colorb,200);
       if(detection.label=='person'){
         rect(800-detection.x*20, detection.y*3+200, detection.width, detection.height);}
       else{
