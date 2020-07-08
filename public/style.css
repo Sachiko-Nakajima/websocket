@@ -53,10 +53,16 @@ width:150px;
 }
 
 #start{
-  margin-left:10px;
-  transform:translate(0px,600px);    
+  margin-left:-220px;
+  transform:translate(0px,640px);    
+  background: pink;
   }
-
+  
+#latin{
+    margin-left:-220px;
+    transform:translate(30px,640px);    
+    }
+  
 #camera1{
   position:relative;
   height: 90px;
