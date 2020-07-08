@@ -152,11 +152,11 @@ function newDrawing(data){
   text(data.label, 800-data.x*4 + 10, data.y*4-10);
 }
 
-function newDrawing2(data){
+function newDrawing2(data2){
   noStroke();
   fill(0,0,255);
-  ellipse(data.xx,data.yy,20,20);
-  console.log("receiving!!!!!!!!!!!!!" + data.xx);
+  ellipse(data2.xx,data2.yy,20,20);
+  console.log("receiving!!!!!!!!!!!!!" + data2.xx);
 }
 
 
