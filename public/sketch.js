@@ -84,6 +84,7 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
+ socket.on('detected', newDrawing);
 }
 
 function loaded(){
@@ -116,7 +117,9 @@ function newDrawing(data){
   ellipse(400,400,20,20);
   console.log(data.label + 'is detected! x is:' + data.x);
   if(data.label == 'person'){
-    image(kitty, 800-data.x*4, data.y*4, data.w, data.h);}
+    fill(0,200,0);
+    ellipse(400,500,20,20);
+    image(kitty, 800-data.x*20, data.y*4, data.w, data.h);}
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*4, data.w, data.h);
         phonesound.setVolume(1);
@@ -180,7 +183,6 @@ camState=!camState;
 function draw() {
 //  if(time%10==0){
   background(240,210,210);
-  socket.on('detected', newDrawing);
 
 //  }
 //socket.on('detected', newDrawing);
@@ -233,9 +235,9 @@ noStroke();
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
-        image(kitty, 800-detection.x*4, detection.y*4, detection.width, detection.height); 
         persontime1++;
         persontime2 = 0;
+        image(kitty, 800-detection.x*20, detection.y*4, detection.width, detection.height); 
       }
       if (detection.label === 'cell phone') {
         phonesound.setVolume(1);
@@ -277,7 +279,15 @@ noStroke();
   }
 }
 
-      if(phonelocalstate == 0){
+if(personlocalstate == 0){
+  if(persontime2 <150){
+    persontime2++;}
+  if(persontime2 > 15 && persontime2<100){
+    personstate = 0;
+  }
+    persontime1=0;
+}  
+if(phonelocalstate == 0){
         if(phonetime2 <150){
           phonetime2++;}
         if(phonetime2 > 15 && phonetime2<100){
