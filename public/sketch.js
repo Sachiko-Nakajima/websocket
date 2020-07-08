@@ -70,8 +70,10 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
+  text("put your name here",200,40);
   input = createInput();
   input.position(200, 80);
+  input.size(50, 20);
   // buttonnn = createButton('start');
   // buttonnn.position(200,80);
   //(input.x + input.width, 80);
