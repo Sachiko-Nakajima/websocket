@@ -154,7 +154,7 @@ function newDrawing(data){
   text(data.label, 800-data.x*4 + 10, data.y*4-10);
 }
 
-function newDrawing(data){
+function newDrawing2(data){
   noStroke();
   fill(0,0,255);
   ellipse(data.x,data.y,20,20);
