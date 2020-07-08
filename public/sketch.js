@@ -70,8 +70,8 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
-  // input = createInput();
-  // input.position(200, 80);
+  input = createInput();
+  input.position(200, 80);
   // buttonnn = createButton('start');
   // buttonnn.position(200,80);
   //(input.x + input.width, 80);
@@ -148,8 +148,10 @@ function newDrawing(data){
   strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
+    text(input.value(), 800-data.x*20 + 50, data.y*3+200+50);
     text(data.label, 800-data.x*20 + 10, data.y*3+200-10);}
   else{
+      text(input.value(), 800-data.x*4 + 50, data.y*3+200+50);
       text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
 
