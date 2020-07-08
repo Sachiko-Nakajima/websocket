@@ -85,6 +85,7 @@ function setup() {
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
  socket.on('detected', newDrawing);
+ socket.on('test', newDrawing2);
 }
 
 function loaded(){
@@ -152,6 +153,13 @@ function newDrawing(data){
   textSize(18);
   text(data.label, 800-data.x*4 + 10, data.y*4-10);
 }
+
+function newDrawing(data){
+  noStroke();
+  fill(0,0,255);
+  ellipse(data.x,data.y,20,20);
+}
+
 
 function modelReady() {
   console.log('model loaded')  
@@ -231,7 +239,12 @@ noStroke();
        w: detection.width,
        h: detection.height
       }
-      socket.emit('detected', data);       
+      socket.emit('detected', data);     
+      var data2 = {
+         x: 300,
+         y: 300
+        }
+        socket.emit('test', data2);    
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
