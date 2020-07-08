@@ -89,16 +89,14 @@ function setup() {
 
  button = document.getElementById('start');
  button.onclick = changeName;
-
 }
 
 function changeName(){
   buttonState = !buttonState;
-    if(buttonState == true){
-  button.innerHTML = "STOP"}else
-  {button.innerHTML ="START"}
-    
-  
+    if(buttonState){
+  button.innerHTML = "STOP"}
+  else{
+    button.innerHTML ="START"}  
   }
 
 function appstart(){
@@ -123,13 +121,7 @@ function appstart(){
 
 
 function newDrawing(data){
-  noStroke();
-  fill(200,0,0);
-  ellipse(400,400,20,20);
-  console.log(data.label + 'is detected! x is:' + data.x);
   if(data.label == 'person'){
-    fill(0,200,0);
-    ellipse(400,500,20,20);
     image(kitty, 800-data.x*20, data.y*3+200, data.w, data.h);}
   if(data.label == 'cell phone'){
       image(phone, 800-data.x*4, data.y*3+200, data.w, data.h);
@@ -269,7 +261,7 @@ noStroke();
       }
       if (detection.label === 'cell phone') {
         phonesound.setVolume(1);
-        console.log("phonesound is" + phonesound.isPlaying);
+//        console.log("phonesound is" + phonesound.isPlaying);
         phonestate = 1;
         phonelocalstate = 1;
         image(phone, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
@@ -278,7 +270,7 @@ noStroke();
       }     
       if (detection.label === 'teddy bear') {
         bearsound.setVolume(1);
-        console.log("bearsound is" + bearsound.isPlaying);
+//        console.log("bearsound is" + bearsound.isPlaying);
         bearstate = 1;
         bearlocalstate = 1;
         image(bear, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
@@ -287,7 +279,7 @@ noStroke();
       }     
       if (detection.label === 'cup') {
         cupsound.setVolume(1);
-        console.log("cupsound is" + cupsound.isPlaying);
+//        console.log("cupsound is" + cupsound.isPlaying);
         cupstate = 1;
         cuplocalstate = 1;
         image(cup, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
@@ -296,7 +288,7 @@ noStroke();
       }   
       if (detection.label === 'bottle') {
         bottlesound.setVolume(1);
-        console.log("bottlesound is" + bottlesound.isPlaying);
+//        console.log("bottlesound is" + bottlesound.isPlaying);
         bottlestate = 1;
         bottlelocalstate = 1;
         image(bottle, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    

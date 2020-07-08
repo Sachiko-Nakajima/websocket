@@ -52,6 +52,12 @@ width:150px;
   
 }
 
+#start{
+
+  margin-left:-50px;
+  transform:translate(0px,600px);    
+  }
+
 #camera1{
   position:relative;
   height: 90px;
