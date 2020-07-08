@@ -355,16 +355,17 @@ noStroke();
 
 
 if(time%5==0){
-  if(phonereceivenum==prephonereceivenum&&phonetime2>5){
+  if(phonereceivenum==prephonereceivenum){
     phonesound.setVolume(0);
   }
-  if(bearreceivenum==prebearreceivenum&&beartime2>5){
+  if(bearreceivenum==prebearreceivenum){
     bearsound.setVolume(0);
   }
-  if(cupreceivenum==precupreceivenum&&cuptime2>5){
+  if(cupreceivenum==precupreceivenum){
     cupsound.setVolume(0);
   }
-  if(bottlereceivenum==prebottlereceivenum&&bottletime2>5){
+  if(bottlereceivenum==prebottlereceivenum){
+    //&&bottletime2>5
     bottlesound.setVolume(0);
   }
   prephonereceivenum = phonereceivenum;
