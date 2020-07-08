@@ -144,12 +144,18 @@ function newDrawing(data){
   noFill();
   strokeWeight(3);
   stroke(data.r, data.g, data.b);
-  rect(800-data.x*4, data.y*4, data.w, data.h);  
+  if(data.label=='person'){
+    rect(800-data.x*20, data.y*4, data.w, data.h);}
+  else{
+    rect(800-data.x*4, data.y*4, data.w, data.h);}
   fill(0);
   stroke(0);
   strokeWeight(1);
   textSize(18);
-  text(data.label, 800-data.x*4 + 10, data.y*4-10);
+  if(data.label=='person'){
+    text(data.label, 800-data.x*20 + 10, data.y*4-10);}
+  else{
+      text(data.label, 800-data.x*4 + 10, data.y*4-10);}
 }
 
 function newDrawing2(data2){
