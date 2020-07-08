@@ -84,7 +84,6 @@ function setup() {
 
  // objects[id] = new ObjectDetected(id, x, y, state, localstate, ontime, offtime);
  socket = io.connect('https://cocreativetest.herokuapp.com/');
- socket.on('detected', newDrawing);
 }
 
 function loaded(){
@@ -114,6 +113,7 @@ function appstart(){
 function newDrawing(data){
   noStroke();
   fill(200,0,100);
+  console.log(data.label 'is detected!');
   if(data.label == 'person'){
     image(kitty, 800-data.x*4, data.y*4, data.w, data.h);}
   if(data.label == 'cell phone'){
@@ -179,7 +179,7 @@ camState=!camState;
 function draw() {
 //  if(time%10==0){
   background(240,210,210);
-//  socket.on('detected', newDrawing);
+  socket.on('detected', newDrawing);
 
 //  }
 //socket.on('detected', newDrawing);
@@ -316,18 +316,18 @@ noStroke();
        }
   
 
-     if(phonetime2<150){
-     console.log("phonetime2 is:" + phonetime2);
-     }
-     if(beartime2<150){
-      console.log("beartime2 is:" + beartime2);
-     }
-     if(cuptime2<150){
-      console.log("cuptime2 is:" + cuptime2);
-     }
-     if(bottletime2<150){
-      console.log("bottletime2 is:" + cuptime2);
-     }
+    //  if(phonetime2<150){
+    //  console.log("phonetime2 is:" + phonetime2);
+    //  }
+    //  if(beartime2<150){
+    //   console.log("beartime2 is:" + beartime2);
+    //  }
+    //  if(cuptime2<150){
+    //   console.log("cuptime2 is:" + cuptime2);
+    //  }
+    //  if(bottletime2<150){
+    //   console.log("bottletime2 is:" + cuptime2);
+    //  }
 
 
 if(time%5==0){
