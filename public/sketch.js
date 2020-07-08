@@ -150,9 +150,9 @@ function newDrawing(data){
   strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
-    text(data.label, 800-data.x*20 + 50, data.y*3+200-50);}
+    text(data.label, 800-data.x*20 + 50, data.y*3+200+50);}
   else{
-      text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
+      text(data.label, 800-data.x*4 + 50, data.y*3+200+50);}
 }
 
 
