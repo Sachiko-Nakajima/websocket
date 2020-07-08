@@ -130,26 +130,26 @@ function newDrawing(data){
   if(data.label == 'person'){
     fill(0,200,0);
     ellipse(400,500,20,20);
-    image(kitty, 800-data.x*20, data.y*4, data.w, data.h);}
+    image(kitty, 800-data.x*20, data.y*3+200, data.w, data.h);}
   if(data.label == 'cell phone'){
-      image(phone, 800-data.x*4, data.y*4, data.w, data.h);
+      image(phone, 800-data.x*4, data.y*3+200, data.w, data.h);
         phonesound.setVolume(1);
         phonereceivenum++;
     }
   if(data.label == 'teddy bear'){
-      image(bear, 800-data.x*4, data.y*4, data.w, data.h);
+      image(bear, 800-data.x*4, data.y*3+200, data.w, data.h);
       bearsound.setVolume(1);
       bearreceivenum++;
     }
 
   if(data.label == 'cup'){
-      image(cup, 800-data.x*4, data.y*4, data.w, data.h);
+      image(cup, 800-data.x*4, data.y*3+200, data.w, data.h);
         cupsound.setVolume(1);
         cupreceivenum++;
       }
 
   if(data.label == 'bottle'){
-        image(bottle, 800-data.x*4, data.y*4, data.w, data.h);
+        image(bottle, 800-data.x*4, data.y*3+200, data.w, data.h);
           bottlesound.setVolume(1);
           bottlereceivenum++;
         }
@@ -157,37 +157,19 @@ function newDrawing(data){
   strokeWeight(3);
   stroke(data.r, data.g, data.b);
   if(data.label=='person'){
-    rect(800-data.x*20, data.y*4, data.w, data.h);}
+    rect(800-data.x*20, data.y*3+200, data.w, data.h);}
   else{
-    rect(800-data.x*4, data.y*4, data.w, data.h);}
+    rect(800-data.x*4, data.y*3+200, data.w, data.h);}
   fill(0);
   stroke(0);
   strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
-    text(data.label, 800-data.x*20 + 10, data.y*4-10);}
+    text(data.label, 800-data.x*20 + 10, data.y*3+200-10);}
   else{
-      text(data.label, 800-data.x*4 + 10, data.y*4-10);}
+      text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
 
-function newDrawing2(data2){
-  noStroke();
-  fill(0,0,255);
-  ellipse(data2.xx,data2.yy,20,20);
-  console.log("receiving!!!!!!!!!!!!!" + data2.xx);
-}
-
-// function mouseDragged(){
-//   console.log('Sending:' + mouseX + ',' + mouseY);
-//   var data2 = {
-//    xx: mouseX,
-//    yy: mouseY  
-//   }
-//   socket.emit('test', data2); 
-//   noStroke();
-//   fill(200);
-//   ellipse(mouseX, mouseY, 10,10);
-// }
 
 function modelReady() {
   console.log('model loaded')  
@@ -221,16 +203,11 @@ function draw() {
   background(240,210,210,200);
 
   }
-// noStroke();
-//   fill(255)
-//   rect(0,0,800,160);
+noStroke();
+  fill(255)
+  rect(0,0,800,160);
 
   socket.on('detected', newDrawing);
-  socket.on('test', newDrawing2);
-  noStroke();
-  fill(0,0,255);
-  ellipse(400,400,20,20);
-
  
   push();
   translate(800, 0);
@@ -258,18 +235,18 @@ function draw() {
       strokeWeight(1);
       textSize(18);
       if(detection.label=='person'){
-        text(detection.label, 800-detection.x*20 + 10, detection.y*4-10);}
+        text(detection.label, 800-detection.x*20 + 10, detection.y*3+200-10);}
       else{
-        text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
+        text(detection.label, 800-detection.x*4 + 10, detection.y*3+200-10);
         }
 
       noFill();
       strokeWeight(3);
-      stroke(colorr, colorb, colorg);
+      stroke(colorr, colorg, colorb);
       if(detection.label=='person'){
-        rect(800-detection.x*20, detection.y*4, detection.width, detection.height);}
+        rect(800-detection.x*20, detection.y*3+200, detection.width, detection.height);}
       else{
-      rect(800-detection.x*4, detection.y*4, detection.width, detection.height);}
+      rect(800-detection.x*4, detection.y*3+200, detection.width, detection.height);}
 
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
@@ -283,24 +260,19 @@ function draw() {
        h: detection.height
       }
       socket.emit('detected', data);     
-      var data2 = {
-         xx: 300,
-         yy: 300
-        }
-        socket.emit('test', data2);    
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
         persontime1++;
         persontime2 = 0;
-        image(kitty, 800-detection.x*20, detection.y*4, detection.width, detection.height); 
+        image(kitty, 800-detection.x*20, detection.y*3+200, detection.width, detection.height); 
       }
       if (detection.label === 'cell phone') {
         phonesound.setVolume(1);
         console.log("phonesound is" + phonesound.isPlaying);
         phonestate = 1;
         phonelocalstate = 1;
-        image(phone, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
+        image(phone, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
             phonetime1++;
             phonetime2 = 0;
       }     
@@ -309,7 +281,7 @@ function draw() {
         console.log("bearsound is" + bearsound.isPlaying);
         bearstate = 1;
         bearlocalstate = 1;
-        image(bear, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
+        image(bear, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
             beartime1++;
             beartime2 = 0;
       }     
@@ -318,7 +290,7 @@ function draw() {
         console.log("cupsound is" + cupsound.isPlaying);
         cupstate = 1;
         cuplocalstate = 1;
-        image(cup, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
+        image(cup, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
             cuptime1++;
             cuptime2 = 0;
       }   
@@ -327,7 +299,7 @@ function draw() {
         console.log("bottlesound is" + bottlesound.isPlaying);
         bottlestate = 1;
         bottlelocalstate = 1;
-        image(bottle, 800-detection.x*4, detection.y*4, detection.width, detection.height);    
+        image(bottle, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
           bottletime1++;
           bottletime2 = 0;
       }   
