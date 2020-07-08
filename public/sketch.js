@@ -354,7 +354,7 @@ noStroke();
     //  }
 
 
-if(time%5==0){
+if(time%3==0){
   if(phonereceivenum==prephonereceivenum){
     phonesound.setVolume(0);
   }
