@@ -199,7 +199,7 @@ camState=!camState;
 
 
 function draw() {
-  if(time%5==0){
+  if(time%2==0){
   background(240,210,210,200);
 
   }
@@ -239,11 +239,19 @@ function draw() {
       stroke(0);
       strokeWeight(1);
       textSize(18);
-      text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
+      if(detection.label==person){
+        text(detection.label, 800-detection.x*20 + 10, detection.y*4-10);}
+      else{
+        text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
+        }
+
       noFill();
       strokeWeight(3);
       stroke(colorr, colorb, colorg);
-      rect(800-detection.x*4, detection.y*4, detection.width, detection.height);
+      if(detection.label==person){
+        rect(800-detection.x*20, detection.y*4, detection.width, detection.height);}
+      else{
+      rect(800-detection.x*4, detection.y*4, detection.width, detection.height);}
 
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
