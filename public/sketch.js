@@ -220,7 +220,7 @@ noStroke();
       strokeWeight(1);
       textSize(18);
       if(detection.label=='person'){
-        text(detection.label, 800-detection.x*20 + 10, detection.y*3+200-10);}
+        text(detection.label, 800-detection.x*20 - 50, detection.y*3+200-50);}
       else{
         text(detection.label, 800-detection.x*4 + 10, detection.y*3+200-10);
         }
