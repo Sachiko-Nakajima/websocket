@@ -199,8 +199,8 @@ camState=!camState;
 
 
 function draw() {
-  if(time%10==0){
-  background(240,210,210,100);
+  if(time%5==0){
+  background(240,210,210,200);
 
   }
 // noStroke();
