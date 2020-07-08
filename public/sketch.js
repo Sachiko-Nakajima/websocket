@@ -197,7 +197,8 @@ noStroke();
 
   fill(colorr, colorg, colorb);
   stroke(colorr, colorg, colorb);
-  text("put your name here",20,10);
+  textSize(12);
+  text("Your Name",20,20);
 
   socket.on('detected', newDrawing);
  
