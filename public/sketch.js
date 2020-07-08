@@ -239,7 +239,7 @@ function draw() {
       stroke(0);
       strokeWeight(1);
       textSize(18);
-      if(detection.label==person){
+      if(detection.label=='person'){
         text(detection.label, 800-detection.x*20 + 10, detection.y*4-10);}
       else{
         text(detection.label, 800-detection.x*4 + 10, detection.y*4-10);
@@ -248,7 +248,7 @@ function draw() {
       noFill();
       strokeWeight(3);
       stroke(colorr, colorb, colorg);
-      if(detection.label==person){
+      if(detection.label=='person'){
         rect(800-detection.x*20, detection.y*4, detection.width, detection.height);}
       else{
       rect(800-detection.x*4, detection.y*4, detection.width, detection.height);}
