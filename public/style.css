@@ -59,9 +59,13 @@ width:150px;
   }
   
 #latin{
-    transform:translate(-60px,680px);    
+    transform:translate(-60px,660px);    
     } 
-  
+
+ #ambient{
+      transform:translate(-60px,680px);    
+    } 
+    
 #camera1{
   position:relative;
   height: 90px;

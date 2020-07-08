@@ -142,12 +142,12 @@ function newDrawing(data){
         }
   noFill();
   strokeWeight(3);
-  stroke(data.r, data.g, data.b,200);
+  stroke(data.r, data.g, data.b,220);
   if(data.label=='person'){
     rect(800-data.x*20, data.y*3+200, data.w, data.h);}
   else{
     rect(800-data.x*4, data.y*3+200, data.w, data.h);}
-    fill(data.r, data.g, data.b,100);
+    fill(data.r, data.g, data.b);
     strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
@@ -197,7 +197,7 @@ noStroke();
 
   fill(colorr, colorg, colorb);
   stroke(colorr, colorg, colorb);
-  text("put your name here",20,40);
+  text("put your name here",20,10);
 
   socket.on('detected', newDrawing);
  
