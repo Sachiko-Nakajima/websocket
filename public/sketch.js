@@ -199,6 +199,10 @@ noStroke();
 
   socket.on('detected', newDrawing);
   socket.on('test', newDrawing2);
+  noStroke();
+  fill(0,0,255);
+  ellipse(400,400,20,20);
+
  
   push();
   translate(800, 0);
