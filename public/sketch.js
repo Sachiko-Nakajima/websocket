@@ -199,8 +199,8 @@ camState=!camState;
 
 
 function draw() {
-  if(time%100==0){
-  background(240,210,210);
+  if(time%10==0){
+  background(240,210,210,100);
 
   }
 // noStroke();
@@ -246,17 +246,17 @@ function draw() {
       rect(800-detection.x*4, detection.y*4, detection.width, detection.height);
 
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
-      // var data = {
-      // label: detection.label, 
-      //  r: colorr,
-      //  g: colorg,
-      //  b: colorb,
-      //  x: detection.x,
-      //  y: detection.y,
-      //  w: detection.width,
-      //  h: detection.height
-      // }
-      // socket.emit('detected', data);     
+      var data = {
+      label: detection.label, 
+       r: colorr,
+       g: colorg,
+       b: colorb,
+       x: detection.x,
+       y: detection.y,
+       w: detection.width,
+       h: detection.height
+      }
+      socket.emit('detected', data);     
       var data2 = {
          xx: 300,
          yy: 300
