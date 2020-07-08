@@ -21,7 +21,6 @@ function newConnection(socket){
     console.log('new connection: ' + socket.id);
 //    socket.on('person', personMsg);
     socket.on('detected', dataMsg);
-    socket.on('test', testMsg);
 
     function dataMsg(data){
 //        socket.broadcast.emit('detected', data);
