@@ -151,10 +151,10 @@ function newDrawing(data){
     strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
-    text(input.value(), 800-data.x*20 + data.w/2, data.y*3+200+data.h/2);
+    text(data.name, 800-data.x*20 + data.w/2, data.y*3+200+data.h/2);
     text(data.label, 800-data.x*20 + 10, data.y*3+200-10);}
   else{
-      text(input.value(), 800-data.x*4 + data.w/2, data.y*3+200+data.h/2);
+      text(data.name, 800-data.x*4 + data.w/2, data.y*3+200+data.h/2);
       text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
 
@@ -244,6 +244,7 @@ noStroke();
       //console.log('Sending:' + detection.x + ',' + detection.y+ ',' + detection.width+ ',' + detection.height);
       var data = {
       label: detection.label, 
+      name: input.value,
        r: colorr,
        g: colorg,
        b: colorb,
