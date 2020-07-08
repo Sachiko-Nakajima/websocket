@@ -159,6 +159,17 @@ function newDrawing2(data2){
   console.log("receiving!!!!!!!!!!!!!" + data2.xx);
 }
 
+function mouseDragged(){
+  console.log('Sending:' + mouseX + ',' + mouseY);
+  var data2 = {
+   xx: mouseX,
+   yy: mouseY  
+  }
+  socket.emit('test', data2); 
+  noStroke();
+  fill(200);
+  ellipse(mouseX, mouseY, 10,10);
+}
 
 function modelReady() {
   console.log('model loaded')  
@@ -247,11 +258,11 @@ noStroke();
       //  h: detection.height
       // }
       // socket.emit('detected', data);     
-      var data2 = {
-         xx: 300,
-         yy: 300
-        }
-        socket.emit('test', data2);    
+      // var data2 = {
+      //    xx: 300,
+      //    yy: 300
+      //   }
+      //   socket.emit('test', data2);    
       if (detection.label == 'person') {
         personstate = 1;
         personlocalstate += 1;
