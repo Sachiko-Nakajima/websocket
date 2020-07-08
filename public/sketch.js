@@ -157,7 +157,8 @@ function newDrawing(data){
 function newDrawing2(data){
   noStroke();
   fill(0,0,255);
-  ellipse(data.x,data.y,20,20);
+  ellipse(data.xx,data.yy,20,20);
+  console.log("receiving!!!!!!!!!!!!!");
 }
 
 
@@ -241,8 +242,8 @@ noStroke();
       }
       socket.emit('detected', data);     
       var data2 = {
-         x: 300,
-         y: 300
+         xx: 300,
+         yy: 300
         }
         socket.emit('test', data2);    
       if (detection.label == 'person') {
