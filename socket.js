@@ -24,10 +24,9 @@ function newConnection(socket){
     socket.on('test', testMsg);
 
     function dataMsg(data){
-        socket.broadcast.emit('detected', data);
-    }
-    function testMsg(data){
-        socket.broadcast.emit('test', data);
-    }
+//        socket.broadcast.emit('detected', data);
+          io.emit('detected', data);
+
+}
 }
 

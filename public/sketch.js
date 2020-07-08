@@ -245,99 +245,99 @@ noStroke();
        h: detection.height
       }
       socket.emit('detected', data);     
-      if (detection.label == 'person') {
-        personstate = 1;
-        personlocalstate += 1;
-        persontime1++;
-        persontime2 = 0;
-        image(kitty, 800-detection.x*20, detection.y*3+200, detection.width, detection.height); 
-      }
-      if (detection.label === 'cell phone') {
-        phonesound.setVolume(1);
-//        console.log("phonesound is" + phonesound.isPlaying);
-        phonestate = 1;
-        phonelocalstate = 1;
-        image(phone, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
-            phonetime1++;
-            phonetime2 = 0;
-      }     
-      if (detection.label === 'teddy bear') {
-        bearsound.setVolume(1);
-//        console.log("bearsound is" + bearsound.isPlaying);
-        bearstate = 1;
-        bearlocalstate = 1;
-        image(bear, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
-            beartime1++;
-            beartime2 = 0;
-      }     
-      if (detection.label === 'cup') {
-        cupsound.setVolume(1);
-//        console.log("cupsound is" + cupsound.isPlaying);
-        cupstate = 1;
-        cuplocalstate = 1;
-        image(cup, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
-            cuptime1++;
-            cuptime2 = 0;
-      }   
-      if (detection.label === 'bottle') {
-        bottlesound.setVolume(1);
-//        console.log("bottlesound is" + bottlesound.isPlaying);
-        bottlestate = 1;
-        bottlelocalstate = 1;
-        image(bottle, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
-          bottletime1++;
-          bottletime2 = 0;
-      }   
+//       if (detection.label == 'person') {
+//         personstate = 1;
+//         personlocalstate += 1;
+//         persontime1++;
+//         persontime2 = 0;
+//         image(kitty, 800-detection.x*20, detection.y*3+200, detection.width, detection.height); 
+//       }
+//       if (detection.label === 'cell phone') {
+//         phonesound.setVolume(1);
+// //        console.log("phonesound is" + phonesound.isPlaying);
+//         phonestate = 1;
+//         phonelocalstate = 1;
+//         image(phone, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
+//             phonetime1++;
+//             phonetime2 = 0;
+//       }     
+//       if (detection.label === 'teddy bear') {
+//         bearsound.setVolume(1);
+// //        console.log("bearsound is" + bearsound.isPlaying);
+//         bearstate = 1;
+//         bearlocalstate = 1;
+//         image(bear, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
+//             beartime1++;
+//             beartime2 = 0;
+//       }     
+//       if (detection.label === 'cup') {
+//         cupsound.setVolume(1);
+// //        console.log("cupsound is" + cupsound.isPlaying);
+//         cupstate = 1;
+//         cuplocalstate = 1;
+//         image(cup, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
+//             cuptime1++;
+//             cuptime2 = 0;
+//       }   
+//       if (detection.label === 'bottle') {
+//         bottlesound.setVolume(1);
+// //        console.log("bottlesound is" + bottlesound.isPlaying);
+//         bottlestate = 1;
+//         bottlelocalstate = 1;
+//         image(bottle, 800-detection.x*4, detection.y*3+200, detection.width, detection.height);    
+//           bottletime1++;
+//           bottletime2 = 0;
+//       }   
     })
   }
 }
 
-if(personlocalstate == 0){
-  if(persontime2 <150){
-    persontime2++;}
-  if(persontime2 > 15 && persontime2<100){
-    personstate = 0;
-  }
-    persontime1=0;
-}  
-if(phonelocalstate == 0){
-        if(phonetime2 <150){
-          phonetime2++;}
-        if(phonetime2 > 15 && phonetime2<100){
-          phonestate = 0;
-          phonesound.setVolume(0);
-        }
-          phonetime1=0;
-      }  
-    if(bearlocalstate == 0){
-      if(beartime2 <150){
-        beartime2++;}
-      if(beartime2 > 15 && beartime2 < 100){
-          bearstate = 0;
-          bearsound.setVolume(0);
-        }
-          beartime1=0;
-      }
+// if(personlocalstate == 0){
+//   if(persontime2 <150){
+//     persontime2++;}
+//   if(persontime2 > 15 && persontime2<100){
+//     personstate = 0;
+//   }
+//     persontime1=0;
+// }  
+// if(phonelocalstate == 0){
+//         if(phonetime2 <150){
+//           phonetime2++;}
+//         if(phonetime2 > 15 && phonetime2<100){
+//           phonestate = 0;
+//           phonesound.setVolume(0);
+//         }
+//           phonetime1=0;
+//       }  
+//     if(bearlocalstate == 0){
+//       if(beartime2 <150){
+//         beartime2++;}
+//       if(beartime2 > 15 && beartime2 < 100){
+//           bearstate = 0;
+//           bearsound.setVolume(0);
+//         }
+//           beartime1=0;
+//       }
     
-   if(cuplocalstate == 0){
-    if(cuptime2 <150){
-      cuptime2++;}
-     if(cuptime2 > 15 && cuptime2<100){
-         cupstate = 0;
-         cupsound.setVolume(0);
-       }
-         cuptime1=0;
-     }
+//    if(cuplocalstate == 0){
+//     if(cuptime2 <150){
+//       cuptime2++;}
+//      if(cuptime2 > 15 && cuptime2<100){
+//          cupstate = 0;
+//          cupsound.setVolume(0);
+//        }
+//          cuptime1=0;
+//      }
 
-     if(bottlelocalstate == 0){
-      if(bottletime2 <150){
-        bottletime2++;}
-       if(bottletime2 > 15 && bottletime2<100){
-        bottlestate = 0;
-        bottlesound.setVolume(0);
-         }
-         bottletime1=0;
-       }
+//      if(bottlelocalstate == 0){
+//       if(bottletime2 <150){
+//         bottletime2++;}
+//        if(bottletime2 > 15 && bottletime2<100){
+//         bottlestate = 0;
+//         bottlesound.setVolume(0);
+//          }
+//          bottletime1=0;
+//        }
   
 
     //  if(phonetime2<150){
