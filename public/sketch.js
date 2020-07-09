@@ -187,7 +187,7 @@ camState=!camState;
 
 
 function draw() {
-  if(time%2==0){
+  if(time%3==0){
   background(240,210,210,200);
 
   }
@@ -220,6 +220,7 @@ noStroke();
   
   time++;
   
+  if(time%2==0){
   if (camState){
     if (detections) {
     detections.forEach(detection => {
@@ -387,4 +388,5 @@ phonelocalstate = 0;
 bearlocalstate = 0;
 cuplocalstate = 0;
 bottlelocalstate = 0;
+  }
 }
