@@ -363,7 +363,7 @@ noStroke();
     //  }
 
 
-if(time%3==0){
+//if(time%3==0){
   if(phonereceivenum==prephonereceivenum){
     phonesound.setVolume(0);
   }
@@ -381,7 +381,7 @@ if(time%3==0){
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
   prebottlereceivenum = bottlereceivenum;
-}
+//}
 personlocalstate = 0;
 phonelocalstate = 0;
 bearlocalstate = 0;
