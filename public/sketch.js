@@ -122,7 +122,7 @@ function changeName(){
   buttonState = !buttonState;
     if(buttonState){
   button.innerHTML = "STOP MUSIC!";
-  if(soundFileState){orangesound = soudFile;}
+  if(soundFileState){orangesound = soundFile;}
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
