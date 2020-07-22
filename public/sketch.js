@@ -363,7 +363,7 @@ if(buttonState){
 
 
 function record() {
-  if(!buttonState){
+  if(buttonState){
     text("stop the music to record the book sound",350,750);
 }
 else{
@@ -398,7 +398,7 @@ function pressToPlayBack() {
     }
 
 function playIt() {
-  if(!buttonState){
+  if(buttonState){
     text("stop the music to check the book sound",350,750);
   }
   else{
