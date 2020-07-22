@@ -84,8 +84,9 @@ function setup() {
  recorder.setInput(mic);   
  soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
- recordButton.position(600,700);
+ recordButton.position(600,710);
  recordButton.size(150,30);
+ recordButton.background(pink);
 }
 
 function changeName(){
