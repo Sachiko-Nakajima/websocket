@@ -89,7 +89,7 @@ function setup() {
  recorder = new p5.SoundRecorder();
  recorder.setInput(mic);   
 // soundFile = new p5.SoundFile();  
- recordButton = createButton('Start Recording');
+ recordButton = createButton('Book Sound Rec');
  recordButton.position(500,710);
  recordButton.size(150,30);
 
@@ -120,6 +120,16 @@ function changeName(){
   bottlesound.setVolume(0);
   booksound.loop();
   booksound.setVolume(0);
+  bearx = random(600)+100;
+  beary = random(400)+200;
+  phonex = random(600)+100;
+  phoney = random(400)+200;
+  cupx = random(600)+100;
+  cupy = random(400)+200;
+  bottlex = random(600)+100;
+  bottley = random(400)+200;
+  bookx = random(600)+100;
+  booky = random(400)+200; 
 }
   else{
     button.innerHTML ="Restart Music!"
@@ -277,12 +287,12 @@ if(isPlaying){
 if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   {
     if(playButtonState){
-      playButton.html("Play Recording");
+      playButton.html("Play Book Sound");
       isPlaying=false;
       console.log("playing stopped");
     }
     if(isRecording){
-      recordButton.html("Start Recording");
+      recordButton.html("Book Sound Rec");
       isRecording=false;
       console.log("recording stopped");
     }
@@ -360,7 +370,7 @@ function record() {
 
 function pressToPlayBack() {
   if(!playButtonState){
-    playButton = createButton('Play Recording');}
+    playButton = createButton('Play Book Sound');}
     playButton.position(500,750);
     playButton.size(150,30);
 
@@ -375,10 +385,10 @@ function pressToPlayBack() {
 
 function playIt() {
   starttime = Date.now();
-  if (booksound.isPlaying()) {
+  if (isPlaying) {
     booksound.setVolume(0);
     booksound.stop();
-    playButton.html("Play Recording");
+    playButton.html("Play Book Sound");
     isPlaying = false; 
     console.log("stop the play!");
   } else {
