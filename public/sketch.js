@@ -48,12 +48,14 @@ let prebottlereceivenum=0;
 let buttonState = false;
 let button;
 
+
 let isRecording = false;
+let isPlaying = false;
 let recorder, soundFile;
 let recordButton;
 let playButton;
 let timer = 4; //timer starts at 4 second
-
+let playButtonState = false;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -101,18 +103,11 @@ function setup() {
  mic.start(); //start computer mic
 
  
- //Create Sound Recorder
  recorder = new p5.SoundRecorder();
- //connect mic to the recorder
  recorder.setInput(mic);   
- //empty sound file used to playback the recording
- soundFile = new p5.SoundFile(); 
- 
- 
- //create Start Recording button and mouse-pressed function to record 
+ soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
  recordButton.mousePressed(record);
-
 }
 
 function changeName(){
@@ -214,14 +209,18 @@ function draw() {
   background(240,210,210,200);
   }
 
-  if (isRecording) {
-    //function countdown starts upon recording
+  if(playButtonState){
+    playButton.mousePressed(playIt);  
+  }
+
+  if (isRecording||isPlaying) {
     countDown(); 
-    if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
-      recordButton.html('🔴REC');
-    else{
-      recordButton.html('⚪️REC');
-    }
+//      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
+if(isRecording){
+    text('🔴REC', 70, 30);}
+if(isPlaying){
+    text('PLAYING', 70, 30);}
+  }
   }
 
 
@@ -427,59 +426,88 @@ bottlelocalstate = 0;
 }
 
 
+
 function record() {
 
   //if it is currentlty recording
   if (!isRecording) {
     //start recording for 4 sec and then trigger pressToPlayBack function
+    timer = 4;
     recorder.record(soundFile, 4, pressToPlayBack); 
     isRecording = true; //set recording state to true
-//    recordButton.html("Now Recording");
+    recordButton.html("Now Recording");
   }
-  else{recordButton.html("Restart Recording")}
-  //erase the Play Recording button:
-//    playButton.remove();
+    //erase the Play Recording button:
+  if(playButtonState){
+    playButton.remove();
+    playButtonState = false;
+  }
 
 }
 
 
+//function pressToPlay
+
+
+//This sketch allows user to click on "Play recording" every time to play the recording whenever they want. Auto-looping is not enabled in this option.  But it can be,  but the interaction would be different.  
 function pressToPlayBack() {
-  //the "Play recording" button will appear:
-  playButton = createButton('Play Recording');
-  //Click "Play Recording" button, function playIt() will be called
-  playButton.mousePressed(playIt);
-  //set "isRecording" to false to stop recording and stop blinking red dot
-  isRecording = false; 
-  //reset timer to 4 second again
-  timer = 4;
-  }
+    //the "Play recording" button will appear:
+  if(!playButtonState){
+    playButton = createButton('Play Recording');}
+    playButtonState = true;
+    //Click "Play Recording" button, function playIt() will be called
+    playButton.mousePressed(playIt);
+    //set "isRecording" to false to stop recording and stop blinking red dot
+    isRecording = false; 
+    //reset timer to 4 second again
+    timer = 4;
+    }
 
 
 
 //function playIt() is called when the Play Rrcording button is clicked
 function playIt() {
-//if the recording is currently playing then stop everything
-if (soundFile.isPlaying()) {
-  soundFile.stop();
-  playButton.html("Play Recording");
-//if the recording is not playing: 
-} else {
-  //then start playing it
-  soundFile.loop();
-  playButton.html("Stop Playing");
-}
+  //if the recording is currently playing then stop everything
+  timer = 4;
+  if (soundFile.isPlaying()) {
+    soundFile.stop();
+    playButton.html("Play Recording");
+    isPlaying = false; 
+  //if the recording is not playing: 
+  } else {
+    //then start playing it
+    soundFile.play();
+    playButton.html("Stop Playing");
+    isPlaying = true; 
+  }
 }
 
 
 
 //function countDown to count from 4 --> 0 second 
 function countDown() {
-// if the frameCount is divisible by 60, then a second has passed. 
-// timer will stop at 0 (counting down from 4, set by variable timer = 4
-if (frameCount % 60 == 0 && timer > 0) { 
-  timer --;
+  // if the frameCount is divisible by 60, then a second has passed. 
+  // timer will stop at 0 (counting down from 4, set by variable timer = 4
+  if (frameCount % 60 == 0 && timer > 0) { 
+    timer --;
+  }
+  if(timer==0)
+  {
+    if(playButtonState){
+      playButton.html("Play Recording");
+      isPlaying=false;
+    }
+    if(isRecording){
+      recordButton.html("Start Recording");
+      isRecording=false;
+    }
+  }
 }
-}
+
+
+
+
+
 
 
 
