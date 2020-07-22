@@ -88,15 +88,15 @@ function setup() {
  recordButton.position(500,710);
  recordButton.size(150,30);
 
- bearx = random(800);
+ bearx = random(600)+100;
  beary = random(600)+200;
- phonex = random(800);
+ phonex = random(600)+100;
  phoney = random(600)+200;
- cupx = random(800);
+ cupx = random(600)+100;
  cupy = random(600)+200;
- bottlex = random(800);
+ bottlex = random(600)+100;
  bottley = random(600)+200;
- bookx = random(800);
+ bookx = random(600)+100;
  booky = random(600)+200; 
 }
 
@@ -158,21 +158,21 @@ function newDrawing(data){
 
         if(data.label == 'book'){
 //          image(book, 800-data.x*4, data.y*3+200, data.w, data.h);
-image(book, bookx, boooky, data.w, data.h);
+image(book, bookx, booky, data.w, data.h);
 booksound.setVolume(1);
           bookreceivenum++;
           }
   
 
   noFill();
-  strokeWeight(3);
+  strokeWeight(2);
   stroke(data.r, data.g, data.b,220);
   if(data.label=='person'){
       rect(800-data.x*20, data.y*3+200, data.w, data.h);}
 else{
 //rect(800-data.x*4, data.y*3+200, data.w, data.h);}
 fill(data.r, data.g, data.b);
-    strokeWeight(1);
+    strokeWeight(0.8);
   textSize(18);
   if(data.label=='person'){
     text(data.name, 800-data.x*20 + data.w/2, data.y*3+200+data.h/2);
