@@ -212,25 +212,18 @@ camState=!camState;
 function draw() {
   if(time%3==0){
   background(240,210,210,200);
-
   }
 
-  textAlign(CENTER, CENTER);
-  //text size for everything on the canvas
-  textSize(20); 
-  //show timer starting from 4 sec as text
-  text(timer, width/2, height/2); 
-  
-      //Make blinking REC icon:
-    if (isRecording) {
-      //function countdown starts upon recording
-      countDown(); 
-      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
-        text('🔴REC', 70, 30);
-      else{
-        text('⚪️REC', 70, 30);
-      }
+  if (isRecording) {
+    //function countdown starts upon recording
+    countDown(); 
+    if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
+      recordButton.html('🔴REC');
+    else{
+      recordButton.html('⚪️REC');
     }
+  }
+
 
 
 noStroke();
@@ -441,10 +434,11 @@ function record() {
     //start recording for 4 sec and then trigger pressToPlayBack function
     recorder.record(soundFile, 4, pressToPlayBack); 
     isRecording = true; //set recording state to true
-
+//    recordButton.html("Now Recording");
   }
-    //erase the Play Recording button:
-    playButton.remove();
+  else{recordButton.html("Restart Recording")}
+  //erase the Play Recording button:
+//    playButton.remove();
 
 }
 
