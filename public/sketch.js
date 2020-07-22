@@ -236,9 +236,9 @@ noStroke();
     countDown(); 
 if(nowtime - starttime < 4000){
   if(isRecording){
-    text('🔴REC', 30, 700);}
+    text('🔴REC', 700, 700);}
 if(isPlaying){
-    text('PLAYING', 30, 700);}
+    text('Cheking', 700, 700);}
 }
   }
 
