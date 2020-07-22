@@ -172,7 +172,7 @@ function newDrawing(data){
         }
 
         if(data.label == 'orange'){
-          image(orange), 800-data.x*4, data.y*3+200, data.w, data.h);
+          image(orange, 800-data.x*4, data.y*3+200, data.w, data.h);
             orangesound.setVolume(1);
             orangereceivenum++;
           }
