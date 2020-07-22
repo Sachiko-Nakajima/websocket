@@ -281,11 +281,11 @@ noStroke();
         if(isRecording){
           if(nowtime - starttime > 900 && nowtime - starttime < 1000){
         text('⚪️REC', 500, 660);}
-      if(nowtime - starttime > 1900 && nowtime - starttime < 2000){
+    　else if(nowtime - starttime > 1900 && nowtime - starttime < 2000){
         text('⚪️REC', 500, 660);}
-      if(nowtime - starttime > 2900 && nowtime - starttime < 3000){
+      else if(nowtime - starttime > 2900 && nowtime - starttime < 3000){
         text('⚪️REC', 500, 660);}
-      if(nowtime - starttime > 3900 && nowtime - starttime < 4000){
+      else if(nowtime - starttime > 3900 && nowtime - starttime < 4000){
          text('⚪️REC', 500, 660);}
       else{
     text('🔴REC', 500, 660);}}
