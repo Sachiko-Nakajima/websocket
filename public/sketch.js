@@ -281,8 +281,14 @@ noStroke();
       if(nowtime - starttime < 4000){
         if(isRecording){
           if(nowtime - starttime > 900 && nowtime - starttime < 1000){
-      text('⚪️REC', 500, 660);}
-    else{
+        text('⚪️REC', 500, 660);}
+      if(nowtime - starttime > 900 && nowtime - starttime < 1000){
+        text('⚪️REC', 500, 660);}
+      if(nowtime - starttime > 1900 && nowtime - starttime < 2000){
+        text('⚪️REC', 500, 660);}
+      if(nowtime - starttime > 2900 && nowtime - starttime < 3000){
+         text('⚪️REC', 500, 660);}
+      else{
     text('🔴REC', 500, 660);}}
 if(isPlaying){
     text('Cheking', 500, 680);}
@@ -397,6 +403,7 @@ function playIt() {
     booksound.stop();
     booksound.play();
     booksound.setVolume(1);
+    if(booksound.isPlaying){console.log("it is really playing!!!");}
     playButton.html("Stop Playing");
     isPlaying = true; 
     console.log("starting to play the recorded sound");
