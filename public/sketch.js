@@ -221,7 +221,6 @@ if(isRecording){
 if(isPlaying){
     text('PLAYING', 70, 30);}
   }
-  }
 
 
 
