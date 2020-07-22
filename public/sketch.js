@@ -329,7 +329,6 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
       socket.emit('detected', data);     
     })
   }
-}
 
 if(buttonState){
   if(phonereceivenum==preprephonereceivenum){
@@ -359,6 +358,7 @@ if(buttonState){
   preprebookreceivenum = prebookreceivenum;
   prebookreceivenum = bookreceivenum;
   }
+}
 }
 
 
