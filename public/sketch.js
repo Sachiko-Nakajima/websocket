@@ -288,17 +288,16 @@ if(isPlaying){
 
 
 function record() {
-
   if (!isRecording) {
     starttime = Date.now();
     recorder.record(soundFile, 4, pressToPlayBack); 
     isRecording = true; 
     recordButton.html("Now Recording");
-  }
   if(playButtonState){
     playButton.remove();
     playButtonState = false;
   }
+}
 }
 
 
