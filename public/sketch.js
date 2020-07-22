@@ -56,6 +56,8 @@ let recordButton;
 let playButton;
 let timer = 4; //timer starts at 4 second
 let playButtonState = false;
+let starttime;
+let nowtime;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -215,11 +217,14 @@ function draw() {
 
   if (isRecording||isPlaying) {
     countDown(); 
+//    nowtime = Date.time();
 //      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
-if(isRecording){
+if(nowtime - starttime < 4000){
+  if(isRecording){
     text('🔴REC', 70, 30);}
 if(isPlaying){
     text('PLAYING', 70, 30);}
+}
   }
 
 
@@ -432,6 +437,7 @@ function record() {
   if (!isRecording) {
     //start recording for 4 sec and then trigger pressToPlayBack function
     timer = 4;
+    starttime = Date.now();
     recorder.record(soundFile, 4, pressToPlayBack); 
     isRecording = true; //set recording state to true
     recordButton.html("Now Recording");
@@ -460,6 +466,7 @@ function pressToPlayBack() {
     isRecording = false; 
     //reset timer to 4 second again
     timer = 4;
+    starttime = Date.now();
     }
 
 
@@ -468,6 +475,8 @@ function pressToPlayBack() {
 function playIt() {
   //if the recording is currently playing then stop everything
   timer = 4;
+  starttime = Date.now();
+
   if (soundFile.isPlaying()) {
     soundFile.stop();
     playButton.html("Play Recording");
@@ -490,15 +499,19 @@ function countDown() {
   if (frameCount % 60 == 0 && timer > 0) { 
     timer --;
   }
-  if(timer==0)
+//  if(timer==0)
+nowtime = Date.now();
+if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   {
     if(playButtonState){
       playButton.html("Play Recording");
       isPlaying=false;
+      console.log("playing stopped");
     }
     if(isRecording){
       recordButton.html("Start Recording");
       isRecording=false;
+      console.log("recording stopped");
     }
   }
 }
