@@ -84,8 +84,8 @@ function setup() {
  recorder.setInput(mic);   
  soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
- recordButton.position(250,750);
- recordButton.size(100,40);
+ recordButton.position(600,700);
+ recordButton.size(150,30);
 }
 
 function changeName(){
@@ -308,8 +308,8 @@ function record() {
 function pressToPlayBack() {
   if(!playButtonState){
     playButton = createButton('Play Recording');}
-    playButton.position(250,780);
-    playButton.size(100,40);
+    plsuButton.position(600,750);
+    playButton.size(150,30);
 
     playButtonState = true;
     soundFileState = true;

@@ -54,18 +54,18 @@ width:150px;
 
 #start{
   position:absolute;
-  transform:translate(-120px,640px);    
+  transform:translate(-120px,740px);    
   background: pink;
   }
   
 #latin{
     position:absolute;
-    transform:translate(-120px,670px);    
+    transform:translate(-120px,770px);    
     } 
 
  #ambient{
     position:absolute;
-    transform:translate(-150px,700px);    
+    transform:translate(-120px,800px);    
     } 
     
 #camera1{
@@ -111,7 +111,7 @@ width:150px;
   transform: translate(15px,605px);
 }
 
-#record{
+/*#record{
   position:absolute;
   height: 90px;
   width: 90px;
@@ -121,7 +121,7 @@ width:150px;
   font-family: 'Helvetica';
   transform: translate(225px, 685px);
 
-}
+}*/
 
 #popUp{
   margin-left:10px;
