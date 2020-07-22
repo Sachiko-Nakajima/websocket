@@ -70,9 +70,9 @@ function setup() {
 
   camera_1.hide()
   camButton = document.getElementById("camera1");
-  colorr = random(255);
-  colorg = random(255);
-  colorb = random(255);
+  colorr = 50+random(150);
+  colorg = 50+random(150);
+  colorb = 50+random(150);
 
   input = createInput();
   input.position(200, 100);
@@ -268,12 +268,16 @@ noStroke();
    }
   pop();
 
-
+if(buttonstate){
   recordButton.mousePressed(record);
 
   if(playButtonState){
     playButton.mousePressed(playIt);  
   }
+}
+else{
+text("stop the music to record/check the book sound",450,750);
+}
 
   if (isRecording||isPlaying) {
 //    countDown(); 
@@ -282,11 +286,11 @@ noStroke();
         if(isRecording){
           if(nowtime - starttime > 900 && nowtime - starttime < 1000){
         text('⚪️REC', 500, 660);}
-      if(nowtime - starttime > 900 && nowtime - starttime < 1000){
-        text('⚪️REC', 500, 660);}
       if(nowtime - starttime > 1900 && nowtime - starttime < 2000){
         text('⚪️REC', 500, 660);}
       if(nowtime - starttime > 2900 && nowtime - starttime < 3000){
+        text('⚪️REC', 500, 660);}
+      if(nowtime - starttime > 3900 && nowtime - starttime < 4000){
          text('⚪️REC', 500, 660);}
       else{
     text('🔴REC', 500, 660);}}
