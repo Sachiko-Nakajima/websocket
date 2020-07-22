@@ -268,7 +268,7 @@ noStroke();
    }
   pop();
 
-if(buttonstate){
+if(buttonState){
   recordButton.mousePressed(record);
 
   if(playButtonState){
