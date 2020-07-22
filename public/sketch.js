@@ -392,8 +392,8 @@ function playIt() {
     isPlaying = false; 
     console.log("stop the play!");
   } else {
-    booksound.play();
     booksound.setVolume(1);
+    booksound.play();
     playButton.html("Stop Playing");
     isPlaying = true; 
     console.log("starting to play the recorded sound");
