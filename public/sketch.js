@@ -5,7 +5,7 @@ let phonesound, phone;
 let bearsound, bear;
 let cupsound, cup;
 let bottlesound, bottle;
-let orangesound, orange;
+let booksound, book;
 let time = 0;
 let socket;
 let font1_shadow;
@@ -19,13 +19,13 @@ let phonereceivenum=0;
 let bearreceivenum=0;
 let cupreceivenum=0;
 let bottlereceivenum=0;
-let orangereceivenum=0;
+let bookreceivenum=0;
 let prephonereceivenum=0;
 let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
-let preorangereceivenum=0;
-let prepreorangereceivenum=0;
+let prebookreceivenum=0;
+let preprebookreceivenum=0;
 let buttonState = false;
 let button;
 
@@ -47,13 +47,13 @@ function preload() {
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
   bottlesound = loadSound("audios/recorder.wav");
-  orangesound = loadSound("audios/meow.wav");
+  booksound = loadSound("audios/meow.wav");
   kitty = loadImage("images/kitty.jpeg");
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   bottle = loadImage("images/bottle.jpeg");
-  orange = loadImage('images/orange.jpg');
+  book = loadImage('images/book.jpeg');
 }
 
 function setup() {
@@ -84,13 +84,14 @@ function setup() {
  recorder.setInput(mic);   
  soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
+ recordButton.posiion(300,700);
 }
 
 function changeName(){
   buttonState = !buttonState;
     if(buttonState){
   button.innerHTML = "STOP MUSIC!";
-  if(soundFileState){orangesound = soundFile;}
+  if(soundFileState){booksound = soundFile;}
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
@@ -99,8 +100,8 @@ function changeName(){
   cupsound.setVolume(0);
   bottlesound.loop();
   bottlesound.setVolume(0);
-  orangesound.loop();
-  orangesound.setVolume(0);
+  booksound.loop();
+  booksound.setVolume(0);
 }
   else{
     button.innerHTML ="RESTART MUSIC!"
@@ -108,7 +109,7 @@ function changeName(){
     phonesound.stop();
     cupsound.stop();
     bottlesound.stop();
-    orangesound.stop();
+    booksound.stop();
   }  
 }
 
@@ -139,10 +140,10 @@ function newDrawing(data){
           bottlereceivenum++;
         }
 
-        if(data.label == 'orange' || data.label == 'apple'){
-          image(orange, 800-data.x*4, data.y*3+200, data.w, data.h);
-            orangesound.setVolume(1);
-            orangereceivenum++;
+        if(data.label == 'book'){
+          image(book, 800-data.x*4, data.y*3+200, data.w, data.h);
+          booksound.setVolume(1);
+          bookreceivenum++;
           }
   
 
@@ -275,15 +276,15 @@ if(isPlaying){
   if(bottlereceivenum==prebottlereceivenum){
     bottlesound.setVolume(0);
   }
-  if(orangereceivenum==prepreorangereceivenum){
-    orangesound.setVolume(0);
+  if(bookreceivenum==preprebookreceivenum){
+    booksound.setVolume(0);
   }
   prephonereceivenum = phonereceivenum;
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
   prebottlereceivenum = bottlereceivenum;
-  prepreorangereceivenum = preorangereceivenum;
-  preorangereceivenum = orangereceivenum;
+  preprebookreceivenum = prebookreceivenum;
+  prebookreceivenum = bookreceivenum;
   }
 }
 
