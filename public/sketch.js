@@ -181,7 +181,7 @@ fill(data.r, data.g, data.b);
       text(data.name, 800-data.x*4 + data.w/2, data.y*3+200+data.h/2);
       text(data.label, 800-data.x*4 + 10, data.y*3+200-10);}
 }
-
+}
 
 function modelReady() {
   console.log('model loaded')  
