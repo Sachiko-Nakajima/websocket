@@ -89,15 +89,15 @@ function setup() {
  recordButton.size(150,30);
 
  bearx = random(600)+100;
- beary = random(600)+200;
+ beary = random(400)+200;
  phonex = random(600)+100;
- phoney = random(600)+200;
+ phoney = random(400)+200;
  cupx = random(600)+100;
- cupy = random(600)+200;
+ cupy = random(400)+200;
  bottlex = random(600)+100;
- bottley = random(600)+200;
+ bottley = random(400)+200;
  bookx = random(600)+100;
- booky = random(600)+200; 
+ booky = random(400)+200; 
 }
 
 function changeName(){
@@ -275,7 +275,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   
   time++;
   
-  if(time%2==0){
+  if(time%3==0){
   if (camState){
     if (detections) {
     detections.forEach(detection => {
