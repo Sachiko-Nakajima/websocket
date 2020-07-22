@@ -53,15 +53,18 @@ width:150px;
 }
 
 #start{
-  transform:translate(-100px,640px);    
+  position:absolute;
+  transform:translate(-120px,640px);    
   background: pink;
   }
   
 #latin{
-    transform:translate(-100px,670px);    
+    position:absolute;
+    transform:translate(-120px,670px);    
     } 
 
  #ambient{
+    position:absolute;
     transform:translate(-150px,700px);    
     } 
     
