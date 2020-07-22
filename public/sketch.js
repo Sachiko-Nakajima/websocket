@@ -268,16 +268,11 @@ noStroke();
    }
   pop();
 
-if(buttonState){
   recordButton.mousePressed(record);
 
   if(playButtonState){
     playButton.mousePressed(playIt);  
   }
-}
-else{
-text("stop the music to record/check the book sound",450,750);
-}
 
   if (isRecording||isPlaying) {
 //    countDown(); 
@@ -315,7 +310,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   
   time++;
   
-//  if(time%3==0){
+//  if(time%2==0){
   if (camState){
     if (detections) {
     detections.forEach(detection => {
@@ -335,6 +330,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   }
 }
 
+if(buttonState){
   if(phonereceivenum==preprephonereceivenum){
     phonesound.setVolume(0);
   }
@@ -361,12 +357,16 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   prepreprebookreceivenum = preprebookreceivenum;
   preprebookreceivenum = prebookreceivenum;
   prebookreceivenum = bookreceivenum;
-//  }
+  }
 }
 
 
 
 function record() {
+  if(!buttonState){
+    text("stop the music to record the book sound",350,750);
+}
+else{
   if (!isRecording) {
     starttime = Date.now();
     recorder.record(booksound, 4, pressToPlayBack); 
@@ -376,6 +376,7 @@ function record() {
     playButton.remove();
     playButtonState = false;
     console.log("playButton is now removed");
+    }
   }
 }
 }
@@ -397,7 +398,11 @@ function pressToPlayBack() {
     }
 
 function playIt() {
-  starttime = Date.now();
+  if(!buttonState){
+    text("stop the music to check the book sound",350,750);
+  }
+  else{
+    starttime = Date.now();
   if (isPlaying) {
     booksound.stop();
     playButton.html("Play Book Sound");
@@ -412,6 +417,7 @@ function playIt() {
     isPlaying = true; 
     console.log("starting to play the recorded sound");
   }
+}
 }
 
 // function countDown() {
