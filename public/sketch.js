@@ -109,7 +109,6 @@ function setup() {
  recorder.setInput(mic);   
  soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
- recordButton.mousePressed(record);
 }
 
 function changeName(){
@@ -211,23 +210,6 @@ function draw() {
   background(240,210,210,200);
   }
 
-  if(playButtonState){
-    playButton.mousePressed(playIt);  
-  }
-
-  if (isRecording||isPlaying) {
-    countDown(); 
-//    nowtime = Date.time();
-//      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
-if(nowtime - starttime < 4000){
-  if(isRecording){
-    text('🔴REC', 70, 30);}
-if(isPlaying){
-    text('PLAYING', 70, 30);}
-}
-  }
-
-
 
 noStroke();
   fill(255)
@@ -255,6 +237,26 @@ noStroke();
       cam_y = -220;
    }
   pop();
+
+
+  recordButton.mousePressed(record);
+
+  if(playButtonState){
+    playButton.mousePressed(playIt);  
+  }
+
+  if (isRecording||isPlaying) {
+    countDown(); 
+//    nowtime = Date.time();
+//      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
+if(nowtime - starttime < 4000){
+  if(isRecording){
+    text('🔴REC', 70, 30);}
+if(isPlaying){
+    text('PLAYING', 70, 30);}
+}
+  }
+
   
   time++;
   
@@ -496,9 +498,9 @@ function playIt() {
 function countDown() {
   // if the frameCount is divisible by 60, then a second has passed. 
   // timer will stop at 0 (counting down from 4, set by variable timer = 4
-  if (frameCount % 60 == 0 && timer > 0) { 
-    timer --;
-  }
+  // if (frameCount % 60 == 0 && timer > 0) { 
+  //   timer --;
+  // }
 //  if(timer==0)
 nowtime = Date.now();
 if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
