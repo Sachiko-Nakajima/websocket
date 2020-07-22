@@ -298,6 +298,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
       playButton.html("Play Book Sound");
       isPlaying=false;
       console.log("playing stopped");
+      booksound.stop();
     }
     if(isRecording){
       recordButton.html("Book Sound Rec");
