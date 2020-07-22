@@ -5,6 +5,7 @@ let phonesound, phone;
 let bearsound, bear;
 let cupsound, cup;
 let bottlesound, bottle;
+let orangesound, orange;
 let personlocalstate = 0;
 let personstate = 0;
 let phonelocalstate = 0;
@@ -15,6 +16,8 @@ let cuplocalstate = 0;
 let cupstate = 0;
 let bottlelocalstate = 0;
 let bottlestate = 0;
+let orangelocalstate = 0;
+let orangestate = 0;
 let persontime1 = 0;
 let persontime2 = 0;
 let phonetime1 = 0;
@@ -25,11 +28,10 @@ let cuptime1 = 0;
 let cuptime2 = 0;
 let bottletime1 = 0;
 let bottletime2 = 0;
+let orangetime1 = 0;
+let orangetime2 = 0;
 let time = 0;
-let objects = [];
 let socket;
-// let buttonnn; 
-// let buttonnnstate = false;
 let font1_shadow;
 let camera_1;
 let camButton;
@@ -41,10 +43,12 @@ let phonereceivenum=0;
 let bearreceivenum=0;
 let cupreceivenum=0;
 let bottlereceivenum=0;
+let orangereceivenum=0;
 let prephonereceivenum=0;
 let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
+let preorangereceivenum=0;
 let buttonState = false;
 let button;
 
@@ -58,6 +62,7 @@ let timer = 4; //timer starts at 4 second
 let playButtonState = false;
 let starttime;
 let nowtime;
+let soundFileState = false;
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -65,11 +70,13 @@ function preload() {
   bearsound = loadSound("audios/guitar.wav");
   cupsound = loadSound("audios/drums.wav");
   bottlesound = loadSound("audios/recorder.wav");
+  orangesound = loadSound("audios/meow.wav");
   kitty = loadImage("images/kitty.jpeg");
   phone = loadImage("images/phone.png");
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   bottle = loadImage("images/bottle.jpeg");
+  orange = loadImage('images/orange.png');
 }
 
 function setup() {
@@ -114,7 +121,8 @@ function setup() {
 function changeName(){
   buttonState = !buttonState;
     if(buttonState){
-  button.innerHTML = "STOP";
+  button.innerHTML = "STOP MUSIC!";
+  if(soundFileState){orangesound = soudFile;}
   bearsound.loop();
   bearsound.setVolume(0);
   phonesound.loop();
@@ -123,13 +131,16 @@ function changeName(){
   cupsound.setVolume(0);
   bottlesound.loop();
   bottlesound.setVolume(0);
+  orangesound.loop();
+  orangesound.setVolume(0);
 }
   else{
-    button.innerHTML ="START"
+    button.innerHTML ="RESTART MUSIC!"
     bearsound.stop();
     phonesound.stop();
     cupsound.stop();
     bottlesound.stop();
+    orangesound.stop();
   }  
 }
 
@@ -159,6 +170,14 @@ function newDrawing(data){
           bottlesound.setVolume(1);
           bottlereceivenum++;
         }
+
+        if(data.label == 'orange'){
+          image(orange), 800-data.x*4, data.y*3+200, data.w, data.h);
+            orangesound.setVolume(1);
+            orangereceivenum++;
+          }
+  
+
   noFill();
   strokeWeight(3);
   stroke(data.r, data.g, data.b,220);
@@ -462,6 +481,7 @@ function pressToPlayBack() {
   if(!playButtonState){
     playButton = createButton('Play Recording');}
     playButtonState = true;
+    soundFileState = true;
     //Click "Play Recording" button, function playIt() will be called
     playButton.mousePressed(playIt);
     //set "isRecording" to false to stop recording and stop blinking red dot
