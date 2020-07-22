@@ -25,7 +25,12 @@ let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
 let prebookreceivenum=0;
+let preprephonereceivenum=0;
+let preprebearreceivenum=0;
+let preprecupreceivenum=0;
+let preprebottlereceivenum=0;
 let preprebookreceivenum=0;
+let prepreprebookreceivenum=0;
 let buttonState = false;
 let button;
 let bearx,beary,phonex, phoney, cupx, cupy, bookx, booky, bottlex, bottley;
@@ -224,7 +229,7 @@ camState=!camState;
 
 function draw() {
   if(time%3==0){
-  background(240,210,210,200);
+  background(240,210,210,100);
   }
 
 
@@ -287,7 +292,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   
   time++;
   
-  if(time%3==0){
+//  if(time%3==0){
   if (camState){
     if (detections) {
     detections.forEach(detection => {
@@ -307,28 +312,33 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   }
 }
 
-  if(phonereceivenum==prephonereceivenum){
+  if(phonereceivenum==preprephonereceivenum){
     phonesound.setVolume(0);
   }
-  if(bearreceivenum==prebearreceivenum){
+  if(bearreceivenum==preprebearreceivenum){
     bearsound.setVolume(0);
   }
-  if(cupreceivenum==precupreceivenum){
+  if(cupreceivenum==preprecupreceivenum){
     cupsound.setVolume(0);
   }
-  if(bottlereceivenum==prebottlereceivenum){
+  if(bottlereceivenum==preprebottlereceivenum){
     bottlesound.setVolume(0);
   }
-  if(bookreceivenum==preprebookreceivenum){
+  if(bookreceivenum==prepreprebookreceivenum){
     booksound.setVolume(0);
   }
+  preprephonereceivenum = prephonereceivenum;
   prephonereceivenum = phonereceivenum;
+  preprebearreceivenum = prebearreceivenum;
   prebearreceivenum = bearreceivenum;
+  preprecupreceivenum = precupreceivenum;
   precupreceivenum = cupreceivenum;
+  preprebottlereceivenum = prebottlereceivenum;
   prebottlereceivenum = bottlereceivenum;
+  prepreprebookreceivenum = preprebookreceivenum;
   preprebookreceivenum = prebookreceivenum;
   prebookreceivenum = bookreceivenum;
-  }
+//  }
 }
 
 
