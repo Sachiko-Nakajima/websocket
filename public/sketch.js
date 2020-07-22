@@ -25,6 +25,7 @@ let prebearreceivenum=0;
 let precupreceivenum=0;
 let prebottlereceivenum=0;
 let preorangereceivenum=0;
+let prepreorangereceivenum=0;
 let buttonState = false;
 let button;
 
@@ -52,7 +53,7 @@ function preload() {
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   bottle = loadImage("images/bottle.jpeg");
-  orange = loadImage('images/orange.png');
+  orange = loadImage('images/orange.jpeg');
 }
 
 function setup() {
@@ -233,9 +234,9 @@ noStroke();
     countDown(); 
 if(nowtime - starttime < 4000){
   if(isRecording){
-    text('🔴REC', 100, 700);}
+    text('🔴REC', 30, 700);}
 if(isPlaying){
-    text('PLAYING', 100, 700);}
+    text('PLAYING', 30, 700);}
 }
   }
 
@@ -274,13 +275,14 @@ if(isPlaying){
   if(bottlereceivenum==prebottlereceivenum){
     bottlesound.setVolume(0);
   }
-  if(orangereceivenum==preorangereceivenum){
+  if(orangereceivenum==prepreorangereceivenum){
     orangesound.setVolume(0);
   }
   prephonereceivenum = phonereceivenum;
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
   prebottlereceivenum = bottlereceivenum;
+  prepreorangereceivenum = preorangereceivenum;
   preorangereceivenum = orangereceivenum;
   }
 }
@@ -320,6 +322,7 @@ function playIt() {
     isPlaying = false; 
   } else {
     soundFile.play();
+    soundFile.setVolume(1);
     playButton.html("Stop Playing");
     isPlaying = true; 
   }
