@@ -233,13 +233,27 @@ noStroke();
   }
 
   if (isRecording||isPlaying) {
-    countDown(); 
+//    countDown(); 
+    nowtime = Date.now();
 if(nowtime - starttime < 4000){
   if(isRecording){
-    text('🔴REC', 500, 650);}
+    text('🔴REC', 500, 680);}
 if(isPlaying){
-    text('Cheking', 500, 680);}
+    text('Cheking', 500, 710);}
 }
+if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
+  {
+    if(playButtonState){
+      playButton.html("Play Recording");
+      isPlaying=false;
+      console.log("playing stopped");
+    }
+    if(isRecording){
+      recordButton.html("Start Recording");
+      isRecording=false;
+      console.log("recording stopped");
+    }
+  }
   }
 
   
@@ -315,9 +329,10 @@ function pressToPlayBack() {
     playButtonState = true;
     soundFileState = true;
     playButton.mousePressed(playIt);
-    isRecording = false; 
-    timer = 4;
-    starttime = Date.now();
+    // isRecording = false; 
+    // starttime = Date.now();
+    // recordButton.html("Start Recording");
+    // console.log("recording stopped");
     }
 
 function playIt() {
@@ -334,19 +349,19 @@ function playIt() {
   }
 }
 
-function countDown() {
-nowtime = Date.now();
-if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
-  {
-    if(playButtonState){
-      playButton.html("Play Recording");
-      isPlaying=false;
-      console.log("playing stopped");
-    }
-    if(isRecording){
-      recordButton.html("Start Recording");
-      isRecording=false;
-      console.log("recording stopped");
-    }
-  }
-}
+// function countDown() {
+// nowtime = Date.now();
+// if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
+//   {
+//     if(playButtonState){
+//       playButton.html("Play Recording");
+//       isPlaying=false;
+//       console.log("playing stopped");
+//     }
+//     if(isRecording){
+//       recordButton.html("Start Recording");
+//       isRecording=false;
+//       console.log("recording stopped");
+//     }
+//   }
+// }
