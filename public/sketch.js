@@ -48,6 +48,12 @@ let prebottlereceivenum=0;
 let buttonState = false;
 let button;
 
+let isRecording = false;
+let recorder, soundFile;
+let recordButton;
+let playButton;
+let timer = 4; //timer starts at 4 second
+
 
 function preload() {
   soundFormats('mp3', 'ogg', 'wav');
@@ -90,6 +96,23 @@ function setup() {
 
  button = document.getElementById('start');
  button.onclick = changeName;
+
+ mic = new p5.AudioIn();  // create an audio in
+ mic.start(); //start computer mic
+
+ 
+ //Create Sound Recorder
+ recorder = new p5.SoundRecorder();
+ //connect mic to the recorder
+ recorder.setInput(mic);   
+ //empty sound file used to playback the recording
+ soundFile = new p5.SoundFile(); 
+ 
+ 
+ //create Start Recording button and mouse-pressed function to record 
+ recordButton = createButton('Start Recording');
+ recordButton.mousePressed(record);
+
 }
 
 function changeName(){
@@ -191,6 +214,25 @@ function draw() {
   background(240,210,210,200);
 
   }
+
+  textAlign(CENTER, CENTER);
+  //text size for everything on the canvas
+  textSize(20); 
+  //show timer starting from 4 sec as text
+  text(timer, width/2, height/2); 
+  
+      //Make blinking REC icon:
+    if (isRecording) {
+      //function countdown starts upon recording
+      countDown(); 
+      if (int(int(frameCount / 35) / 2) != int(frameCount / 35) / 2)
+        text('🔴REC', 70, 30);
+      else{
+        text('⚪️REC', 70, 30);
+      }
+    }
+
+
 noStroke();
   fill(255)
   rect(0,0,800,160);
@@ -390,3 +432,64 @@ cuplocalstate = 0;
 bottlelocalstate = 0;
   }
 }
+
+
+function record() {
+
+  //if it is currentlty recording
+  if (!isRecording) {
+    //start recording for 4 sec and then trigger pressToPlayBack function
+    recorder.record(soundFile, 4, pressToPlayBack); 
+    isRecording = true; //set recording state to true
+
+  }
+    //erase the Play Recording button:
+    playButton.remove();
+
+}
+
+
+function pressToPlayBack() {
+  //the "Play recording" button will appear:
+  playButton = createButton('Play Recording');
+  //Click "Play Recording" button, function playIt() will be called
+  playButton.mousePressed(playIt);
+  //set "isRecording" to false to stop recording and stop blinking red dot
+  isRecording = false; 
+  //reset timer to 4 second again
+  timer = 4;
+  }
+
+
+
+//function playIt() is called when the Play Rrcording button is clicked
+function playIt() {
+//if the recording is currently playing then stop everything
+if (soundFile.isPlaying()) {
+  soundFile.stop();
+  playButton.html("Play Recording");
+//if the recording is not playing: 
+} else {
+  //then start playing it
+  soundFile.loop();
+  playButton.html("Stop Playing");
+}
+}
+
+
+
+//function countDown to count from 4 --> 0 second 
+function countDown() {
+// if the frameCount is divisible by 60, then a second has passed. 
+// timer will stop at 0 (counting down from 4, set by variable timer = 4
+if (frameCount % 60 == 0 && timer > 0) { 
+  timer --;
+}
+}
+
+
+
+
+
+
+
