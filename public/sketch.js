@@ -53,7 +53,7 @@ function preload() {
   bear = loadImage("images/bear.jpeg");
   cup = loadImage("images/cup.png");
   bottle = loadImage("images/bottle.jpeg");
-  orange = loadImage('images/orange.jpeg');
+  orange = loadImage('images/orange.jpg');
 }
 
 function setup() {
