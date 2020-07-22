@@ -28,6 +28,7 @@ let prebookreceivenum=0;
 let preprebookreceivenum=0;
 let buttonState = false;
 let button;
+let bearx,beary,phonex, phoney, cupx, cupy, bookx, booky, bottlex, bottley;
 
 
 let isRecording = false;
@@ -86,6 +87,17 @@ function setup() {
  recordButton = createButton('Start Recording');
  recordButton.position(500,710);
  recordButton.size(150,30);
+
+ bearx = random(800);
+ beary = random(600)+200;
+ phonex = random(800);
+ phoney = random(600)+200;
+ cupx = random(800);
+ cupy = random(600)+200;
+ bottlex = random(800);
+ bottley = random(600)+200;
+ bookx = random(800);
+ booky = random(600)+200; 
 }
 
 function changeName(){
@@ -124,26 +136,30 @@ function newDrawing(data){
         phonereceivenum++;
     }
   if(data.label == 'teddy bear'){
-      image(bear, 800-data.x*4, data.y*3+200, data.w, data.h);
+//      image(bear, 800-data.x*4, data.y*3+200, data.w, data.h);
+      image(bear, bearx, beary, data.w, data.h);
       bearsound.setVolume(1);
       bearreceivenum++;
     }
 
   if(data.label == 'cup'){
-      image(cup, 800-data.x*4, data.y*3+200, data.w, data.h);
+//      image(cup, 800-data.x*4, data.y*3+200, data.w, data.h);
+        image(cup, cupx, cupy, data.w, data.h);
         cupsound.setVolume(1);
         cupreceivenum++;
       }
 
   if(data.label == 'bottle'){
-        image(bottle, 800-data.x*4, data.y*3+200, data.w, data.h);
+    image(bottle, bottlex, bottley, data.w, data.h);
+    //image(bottle, 800-data.x*4, data.y*3+200, data.w, data.h);
           bottlesound.setVolume(1);
           bottlereceivenum++;
         }
 
         if(data.label == 'book'){
-          image(book, 800-data.x*4, data.y*3+200, data.w, data.h);
-          booksound.setVolume(1);
+//          image(book, 800-data.x*4, data.y*3+200, data.w, data.h);
+image(book, bookx, boooky, data.w, data.h);
+booksound.setVolume(1);
           bookreceivenum++;
           }
   
@@ -152,10 +168,10 @@ function newDrawing(data){
   strokeWeight(3);
   stroke(data.r, data.g, data.b,220);
   if(data.label=='person'){
-    rect(800-data.x*20, data.y*3+200, data.w, data.h);}
-  else{
-    rect(800-data.x*4, data.y*3+200, data.w, data.h);}
-    fill(data.r, data.g, data.b);
+      rect(800-data.x*20, data.y*3+200, data.w, data.h);}
+else{
+//rect(800-data.x*4, data.y*3+200, data.w, data.h);}
+fill(data.r, data.g, data.b);
     strokeWeight(1);
   textSize(18);
   if(data.label=='person'){
@@ -237,9 +253,9 @@ noStroke();
     nowtime = Date.now();
 if(nowtime - starttime < 4000){
   if(isRecording){
-    text('🔴REC', 500, 680);}
+    text('🔴REC', 500, 660);}
 if(isPlaying){
-    text('Cheking', 500, 710);}
+    text('Cheking', 500, 680);}
 }
 if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   {
@@ -259,7 +275,7 @@ if(nowtime - starttime == 4000 || nowtime - starttime > 4000 )
   
   time++;
   
-  if(time%3==0){
+  if(time%2==0){
   if (camState){
     if (detections) {
     detections.forEach(detection => {
@@ -338,6 +354,7 @@ function pressToPlayBack() {
 function playIt() {
   starttime = Date.now();
   if (soundFile.isPlaying()) {
+    soundFile.setVolume(0);
     soundFile.stop();
     playButton.html("Play Recording");
     isPlaying = false; 
