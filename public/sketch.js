@@ -86,7 +86,7 @@ function setup() {
  recordButton = createButton('Start Recording');
  recordButton.position(600,710);
  recordButton.size(150,30);
- recordButton.background(pink);
+ recordButton.background(200,100,100);
 }
 
 function changeName(){
