@@ -171,7 +171,7 @@ function newDrawing(data){
           bottlereceivenum++;
         }
 
-        if(data.label == 'orange'){
+        if(data.label == 'orange' || 'apple'){
           image(orange, 800-data.x*4, data.y*3+200, data.w, data.h);
             orangesound.setVolume(1);
             orangereceivenum++;
@@ -437,16 +437,22 @@ if(isPlaying){
     //&&bottletime2>5
     bottlesound.setVolume(0);
   }
+  if(orangereceivenum==preorangereceivenum){
+    //&&bottletime2>5
+    orangesound.setVolume(0);
+  }
   prephonereceivenum = phonereceivenum;
   prebearreceivenum = bearreceivenum;
   precupreceivenum = cupreceivenum;
   prebottlereceivenum = bottlereceivenum;
+  preorangereceivenum = orangereceivenum;
 //}
 personlocalstate = 0;
 phonelocalstate = 0;
 bearlocalstate = 0;
 cuplocalstate = 0;
 bottlelocalstate = 0;
+orangelocalstate = 0;
   }
 }
 
