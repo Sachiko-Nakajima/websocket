@@ -84,7 +84,7 @@ function setup() {
  recorder.setInput(mic);   
  soundFile = new p5.SoundFile();  
  recordButton = createButton('Start Recording');
- recordButton.position(600,710);
+ recordButton.position(400,710);
  recordButton.size(150,30);
 }
 
@@ -236,9 +236,9 @@ noStroke();
     countDown(); 
 if(nowtime - starttime < 4000){
   if(isRecording){
-    text('🔴REC', 700, 700);}
+    text('🔴REC', 600, 690);}
 if(isPlaying){
-    text('Cheking', 700, 700);}
+    text('Cheking', 600, 690);}
 }
   }
 
@@ -300,6 +300,7 @@ function record() {
   if(playButtonState){
     playButton.remove();
     playButtonState = false;
+    console.log("playButton is now removed");
   }
 }
 }
@@ -308,7 +309,7 @@ function record() {
 function pressToPlayBack() {
   if(!playButtonState){
     playButton = createButton('Play Recording');}
-    plsuButton.position(600,750);
+    playButton.position(400,750);
     playButton.size(150,30);
 
     playButtonState = true;
