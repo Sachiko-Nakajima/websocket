@@ -282,9 +282,8 @@ noStroke();
         if(isRecording){
           if(nowtime - starttime > 900 && nowtime - starttime < 1000){
       text('⚪️REC', 500, 660);}
-    }
     else{
-    text('🔴REC', 500, 660);}
+    text('🔴REC', 500, 660);}}
 if(isPlaying){
     text('Cheking', 500, 680);}
 }
