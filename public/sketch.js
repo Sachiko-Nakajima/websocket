@@ -88,7 +88,7 @@ function setup() {
  
  recorder = new p5.SoundRecorder();
  recorder.setInput(mic);   
-// soundFile = new p5.SoundFile();  
+ booksound = new p5.SoundFile();  
  recordButton = createButton('Book Sound Rec');
  recordButton.position(500,710);
  recordButton.size(150,30);
